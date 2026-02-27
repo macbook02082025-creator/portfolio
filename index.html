@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Naveen Singh — Senior Angular Architect & GenAI Integration Specialist</title>
+<meta name="description" content="Naveen Singh — Senior Angular Architect with 9+ years building $50M+/month enterprise banking platforms. Expert in Angular v2–v19, production Generative AI & RAG architecture, micro-frontends, Web Vitals governance. Available remotely worldwide.">
+<meta name="author" content="Naveen Singh">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#030407">
+<link rel="canonical" href="https://naveensingh.dev/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Naveen Singh — Senior Angular Architect & GenAI Specialist">
+<meta property="og:description" content="9+ years. $50M+/month banking platform. Angular v2→v19 zero regressions. RAG + LLM in production.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- 3D Background (Three.js) -->
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+<!-- Gradient Mesh -->
+<div class="mesh" aria-hidden="true"></div>
+
+<!-- Theme Switcher -->
+<div id="theme-switcher" aria-label="Theme switcher">
+  <button id="theme-toggle-btn" aria-expanded="false" aria-controls="theme-panel">
+    <span class="palette-preview" id="palette-preview-dots">
+      <span class="palette-dot" style="background:#8B5CF6"></span>
+      <span class="palette-dot" style="background:#06B6D4"></span>
+      <span class="palette-dot" style="background:#F59E0B"></span>
+    </span>
+    Themes
+  </button>
+  <div id="theme-panel" role="listbox" aria-label="Color themes">
+    <div class="tp-label">Choose Your Theme</div>
+
+    <button class="theme-btn active" data-theme="aurora" role="option">
+      <span class="theme-swatches">
+        <span class="theme-swatch" style="background:#8B5CF6"></span>
+        <span class="theme-swatch" style="background:#06B6D4"></span>
+        <span class="theme-swatch" style="background:#F59E0B"></span>
+      </span>
+      <span><div class="theme-name">Aurora</div><div class="theme-desc">Violet · Cyan · Gold</div></span>
+    </button>
+
+    <button class="theme-btn" data-theme="midnight-rose" role="option">
+      <span class="theme-swatches">
+        <span class="theme-swatch" style="background:#EC4899"></span>
+        <span class="theme-swatch" style="background:#F97316"></span>
+        <span class="theme-swatch" style="background:#FCD34D"></span>
+      </span>
+      <span><div class="theme-name">Midnight Rose</div><div class="theme-desc">Hot Pink · Orange · Gold</div></span>
+    </button>
+
+    <button class="theme-btn" data-theme="neon-tokyo" role="option">
+      <span class="theme-swatches">
+        <span class="theme-swatch" style="background:#00FF88"></span>
+        <span class="theme-swatch" style="background:#FF2D78"></span>
+        <span class="theme-swatch" style="background:#00CFFF"></span>
+      </span>
+      <span><div class="theme-name">Neon Tokyo</div><div class="theme-desc">Lime · Neon Pink · Cyan</div></span>
+    </button>
+
+    <button class="theme-btn" data-theme="arctic" role="option">
+      <span class="theme-swatches">
+        <span class="theme-swatch" style="background:#3B82F6"></span>
+        <span class="theme-swatch" style="background:#E2E8F0"></span>
+        <span class="theme-swatch" style="background:#38BDF8"></span>
+      </span>
+      <span><div class="theme-name">Arctic Blue</div><div class="theme-desc">Electric Blue · Ice · Sky</div></span>
+    </button>
+
+    <button class="theme-btn" data-theme="emerald" role="option">
+      <span class="theme-swatches">
+        <span class="theme-swatch" style="background:#10B981"></span>
+        <span class="theme-swatch" style="background:#34D399"></span>
+        <span class="theme-swatch" style="background:#A78BFA"></span>
+      </span>
+      <span><div class="theme-name">Emerald Night</div><div class="theme-desc">Emerald · Mint · Violet</div></span>
+    </button>
+
+    <button class="theme-btn" data-theme="crimson" role="option">
+      <span class="theme-swatches">
+        <span class="theme-swatch" style="background:#EF4444"></span>
+        <span class="theme-swatch" style="background:#F97316"></span>
+        <span class="theme-swatch" style="background:#CBD5E1"></span>
+      </span>
+      <span><div class="theme-name">Crimson</div><div class="theme-desc">Red · Orange · Silver</div></span>
+    </button>
+
+    <button class="theme-btn" data-theme="royal-gold" role="option">
+      <span class="theme-swatches">
+        <span class="theme-swatch" style="background:#F59E0B"></span>
+        <span class="theme-swatch" style="background:#FBBF24"></span>
+        <span class="theme-swatch" style="background:#E2E8F0"></span>
+      </span>
+      <span><div class="theme-name">Royal Gold</div><div class="theme-desc">Amber · Gold · Platinum</div></span>
+    </button>
+
+    <button class="theme-btn" data-theme="sakura" role="option">
+      <span class="theme-swatches">
+        <span class="theme-swatch" style="background:#F472B6"></span>
+        <span class="theme-swatch" style="background:#A78BFA"></span>
+        <span class="theme-swatch" style="background:#67E8F9"></span>
+      </span>
+      <span><div class="theme-name">Sakura</div><div class="theme-desc">Pink · Lavender · Aqua</div></span>
+    </button>
+
+  </div>
+</div>
+
+<!-- Cursor -->
+<div id="cur-dot" aria-hidden="true"></div>
+<div id="cur-ring" aria-hidden="true"></div>
+
+<!-- Loader -->
+<div id="loader" role="status" aria-label="Loading">
+  <div class="ldr-mark">
+    <div class="ldr-mark-inner"></div>
+  </div>
+  <div class="ldr-name">Naveen Singh</div>
+  <div class="ldr-tag">Angular Architect · GenAI Engineer</div>
+  <div class="ldr-progress"></div>
+</div>
+
+<!-- Scroll Progress -->
+<div id="prog" role="progressbar" aria-hidden="true"></div>
+
+<!-- Navigation -->
+<header role="banner">
+<nav id="nav" aria-label="Main navigation">
+  <div class="nw">
+    <a href="#hero" class="n-logo">NS<span class="dot">·</span></a>
+    <div class="n-links" role="menubar">
+      <a href="#about" class="n-a" data-s="about">About</a>
+      <a href="#skills" class="n-a" data-s="skills">Skills</a>
+      <a href="#experience" class="n-a" data-s="experience">Experience</a>
+      <a href="#projects" class="n-a" data-s="projects">Projects</a>
+      <a href="#ai" class="n-a" data-s="ai">GenAI</a>
+      <a href="#contact" class="n-a" data-s="contact">Contact</a>
+    </div>
+    <div class="n-btns">
+      <a href="#" class="btn-outline" id="nd">↓ Resume</a>
+      <a href="#contact" class="btn-hire">Hire Me →</a>
+    </div>
+    <button class="ham" id="ham" aria-expanded="false" aria-controls="mobnav" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<nav id="mobnav" class="mob-nav" aria-label="Mobile navigation">
+  <a href="#about" class="mob-a">About</a>
+  <a href="#skills" class="mob-a">Skills</a>
+  <a href="#experience" class="mob-a">Experience</a>
+  <a href="#projects" class="mob-a">Projects</a>
+  <a href="#ai" class="mob-a">GenAI</a>
+  <a href="#contact" class="mob-a">Contact</a>
+  <a href="#" class="mob-a" id="mnd">Download Resume</a>
+</nav>
+</header>
+
+<main>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section id="hero" class="hero" aria-labelledby="hero-name">
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="h-status" id="hero-status"></div>
+        <h1 class="hero-name" id="hero-name">
+          <span class="line1" id="hero-name1"></span>
+          <span class="line2" id="hero-name2"></span>
+        </h1>
+        <p class="hero-tagline" id="hero-tagline"></p>
+        <div class="hero-chips" id="hero-chips"></div>
+        <div class="hero-btns">
+          <a href="#contact" class="btn-primary">Let's Work Together →</a>
+          <a href="#" class="btn-ghost" id="hd">↓ Download Resume</a>
+        </div>
+        <div class="hero-socials">
+          <a href="mailto:n_aveen@outlook.com" class="hsoc" aria-label="Email Naveen">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            n_aveen@outlook.com
+          </a>
+          <span class="h-vsep" aria-hidden="true"></span>
+          <a href="https://www.linkedin.com/in/naveen-singh-57051ab9/" target="_blank" rel="noopener noreferrer" class="hsoc" aria-label="LinkedIn profile">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zm2-1a2 2 0 110-4 2 2 0 010 4z"/></svg>
+            LinkedIn
+          </a>
+          <span class="h-vsep" aria-hidden="true"></span>
+          <a href="tel:+918077486316" class="hsoc">
+            <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+            +91 80774 86316
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hpanel">
+          <div class="hpanel-glow" aria-hidden="true"></div>
+          <div class="hstat-grid" id="hero-stats"></div>
+          <div class="hcard-list" id="hero-cards"></div>
+          <div class="h-avail-badge">
+            <div class="h-avail-badge-dot" aria-hidden="true"></div>
+            <div>
+              <div class="h-avail-text">Immediately Available</div>
+              <div class="h-avail-sub">Remote · Full-time / Consulting · Worldwide</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq-wrap" aria-hidden="true">
+  <div class="mq-inner">
+    <div class="mq-item"><span class="mq-t">Angular v2–v19</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">RAG Architecture</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">LangChain · FAISS</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">Module Federation</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">Zero Regressions Policy</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">TypeScript · RxJS</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">Micro-Frontend</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">GenAI · Production LLM</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">Web Vitals Governance</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">Nx Monorepo</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">Angular v2–v19</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">RAG Architecture</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">LangChain · FAISS</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">Module Federation</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">Zero Regressions Policy</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">TypeScript · RxJS</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">Micro-Frontend</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">GenAI · Production LLM</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">Web Vitals Governance</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">Nx Monorepo</span><span class="mq-sep"></span></div>
+  </div>
+</div>
+
+<!-- METRICS -->
+<div class="metrics-row" role="list" aria-label="Key metrics" id="metrics-row">
+</div>
+
+<hr class="hr">
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<section id="about" aria-labelledby="about-h">
+  <div class="wrap">
+    <div class="r">
+      <p class="s-eyebrow">About Naveen</p>
+      <h2 class="s-title" id="about-h">The Engineer <em>Behind</em> the Platform</h2>
+    </div>
+    <div class="about-grid r">
+      <div class="about-l">
+        <div class="a-avatar-wrap">
+          <div class="a-avatar">NS</div>
+          <div class="a-avatar-ring" aria-hidden="true"></div>
+        </div>
+        <div class="a-name">Naveen Singh</div>
+        <div class="a-role">Senior Angular Architect · GenAI Engineer</div>
+        <div class="a-loc">📍 Rishikesh, Uttarakhand, India · Remote Worldwide</div>
+        <div class="a-bio" id="about-bio">
+        </div>
+        <div class="a-links">
+          <a href="mailto:n_aveen@outlook.com" class="a-link">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            Email
+          </a>
+          <a href="https://www.linkedin.com/in/naveen-singh-57051ab9/" target="_blank" rel="noopener noreferrer" class="a-link">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zm2-1a2 2 0 110-4 2 2 0 010 4z"/></svg>
+            LinkedIn
+          </a>
+          <a href="tel:+918077486316" class="a-link">
+            <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+            +91 80774 86316
+          </a>
+          <a href="#" class="a-link" id="ad">
+            <svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zm7-18L5.33 9h3.84v4h5.66V9h3.84L12 2z"/></svg>
+            Resume
+          </a>
+        </div>
+      </div>
+      <div class="about-r" id="about-philosophies">
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- ═══════════ SKILLS ═══════════ -->
+<section id="skills" aria-labelledby="skills-h">
+  <div class="wrap">
+    <div class="r">
+      <p class="s-eyebrow">Technical Arsenal</p>
+      <h2 class="s-title" id="skills-h">Skills &amp; <em>Expertise</em></h2>
+      <p class="s-sub">Deep platform expertise built over 9+ years on enterprise production systems — from Angular internals to LLM pipeline engineering.</p>
+    </div>
+    <div class="skills-grid r" id="skills-grid">
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- ═══════════ EXPERIENCE ═══════════ -->
+<section id="experience" aria-labelledby="exp-h">
+  <div class="wrap">
+    <div class="r">
+      <p class="s-eyebrow">Career Timeline</p>
+      <h2 class="s-title" id="exp-h">Work <em>Experience</em></h2>
+      <p class="s-sub">A track record of progressive ownership — from developer to platform architect to GenAI engineer at enterprise scale.</p>
+    </div>
+    <div class="tl r" id="experience-timeline">
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- ═══════════ PROJECTS ═══════════ -->
+<section id="projects" aria-labelledby="proj-h">
+  <div class="wrap">
+    <div class="r">
+      <p class="s-eyebrow">Build Portfolio</p>
+      <h2 class="s-title" id="proj-h">Featured <em>Projects</em></h2>
+      <p class="s-sub">Production systems across banking, insurance, and AI — each solving a real architectural challenge at scale.</p>
+    </div>
+    <div class="proj-filters r">
+      <button class="pf-btn on" data-f="all">All</button>
+      <button class="pf-btn" data-f="enterprise">Enterprise</button>
+      <button class="pf-btn" data-f="genai">GenAI / AI</button>
+      <button class="pf-btn" data-f="platform">Platform</button>
+      <button class="pf-btn" data-f="independent">Independent</button>
+    </div>
+    <div class="feat-grid r" id="featured-projects">
+    </div>
+    <div class="reg-grid" id="regular-projects">
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- ═══════════ GENAI ═══════════ -->
+<section id="ai" aria-labelledby="ai-h">
+  <div class="wrap">
+    <div class="r">
+      <p class="s-eyebrow">Generative AI Engineering</p>
+      <h2 class="s-title" id="ai-h">AI Engineering <em>Depth</em></h2>
+      <p class="s-sub">Production GenAI in regulated financial environments — architecture, reliability, compliance, and observability. Not just integration.</p>
+    </div>
+    <div class="ai-wrap r">
+      <div class="ai-l">
+        <div class="ai-body">
+          <p>Most frontend engineers add a chat widget. I <strong>architect the entire AI stack</strong> — from embedding pipelines and vector index tuning to hallucination mitigation and production observability in environments where every output may be reviewed by compliance teams and regulators.</p>
+          <p>This includes a <strong>5-layer compliance architecture</strong> ensuring every AI output in banking workflows is audit-ready and legally defensible, with source-attribution UI mapping each claim to its exact source passage.</p>
+          <p>Deployed RAG systems processing <strong>10k–50k documents</strong> at sub-500ms p95 retrieval. Built intent-aware prompt routing achieving <strong>98%+ alignment</strong> against 500+ human expert benchmark datasets. Engineered streaming delivery achieving <strong>sub-200ms TTFT</strong>.</p>
+        </div>
+        <div class="ai-callout">
+          <div class="ai-callout-h">⚡ Ramp Velocity — Core Differentiator</div>
+          <p>From <strong>zero GenAI knowledge</strong> to a full demo-ready RAG platform in <strong>6 weeks</strong>. Same systematic methodology applied across Angular v6→v19 and production-ready React in <strong>48 hours</strong> during a critical cross-team release.</p>
+        </div>
+      </div>
+      <div class="ai-r">
+        <div class="ai-pillar">
+          <div class="card-shine" aria-hidden="true"></div>
+          <div class="aip-num">01</div>
+          <div class="aip-title">RAG Architecture &amp; Retrieval</div>
+          <p class="aip-text">Adaptive retrieval with dynamic K (3–12), MMR diversity, IVF-PQ indexing (p95: 3–4s → sub-500ms, &lt;2% recall degradation), semantic threshold filtering, and heterogeneous ingestion with pre-embedding normalization reducing false-positive retrieval by 40%.</p>
+        </div>
+        <div class="ai-pillar">
+          <div class="card-shine" aria-hidden="true"></div>
+          <div class="aip-num">02</div>
+          <div class="aip-title">Hallucination Mitigation Pipeline</div>
+          <p class="aip-text">5-layer architecture: source-constrained retrieval → confidence scoring → semantic reranking → citation-attribution UI (every claim mapped to exact source passage) → HITL escalation. Near-zero unverified outputs reaching compliance teams.</p>
+        </div>
+        <div class="ai-pillar">
+          <div class="card-shine" aria-hidden="true"></div>
+          <div class="aip-num">03</div>
+          <div class="aip-title">Prompt Engineering &amp; Pipelines</div>
+          <p class="aip-text">Intent-aware routing with query classification, few-shot injection per intent class, CoT reasoning for multi-step queries, token budget management (sliding window chunking, pre-counting), and stateful multi-turn context with turn-based eviction across 20+ turns.</p>
+        </div>
+        <div class="ai-pillar">
+          <div class="card-shine" aria-hidden="true"></div>
+          <div class="aip-num">04</div>
+          <div class="aip-title">Observability &amp; Quality</div>
+          <p class="aip-text">LangSmith + Arize Phoenix tracking token usage, retrieval latency, and response quality. GPT-4o LLM-as-Judge scoring loops — 98%+ alignment against 500+ human expert benchmarks. Drift detection driving 15% query success improvement over 3 months.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section id="contact" aria-labelledby="contact-h">
+  <div class="wrap">
+    <div class="r">
+      <p class="s-eyebrow">Get in Touch</p>
+      <h2 class="s-title" id="contact-h">Let's Build <em>Together</em></h2>
+    </div>
+    <div class="contact-wrap r">
+      <div class="cl">
+        <div>
+          <div class="cl-eyebrow">Open to Opportunities</div>
+          <h3 class="cl-h">Ready to scale your <em>frontend</em> platform?</h3>
+          <p class="cl-body">Available for senior Angular architecture engagements, platform strategy consulting, GenAI integration projects, and full-time remote roles. Deep fintech domain expertise. Global timezone flexibility.</p>
+          <div class="cl-chips">
+            <span class="cl-chip">Remote-First</span>
+            <span class="cl-chip">Full-Time</span>
+            <span class="cl-chip">Consulting</span>
+            <span class="cl-chip">Contract</span>
+            <span class="cl-chip">Fintech</span>
+            <span class="cl-chip">Enterprise</span>
+          </div>
+        </div>
+        <a href="#" class="dl-btn" id="cd">
+          <svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zm7-18L5.33 9h3.84v4h5.66V9h3.84L12 2z"/></svg>
+          Download My Resume
+        </a>
+      </div>
+      <div class="cr">
+        <div class="ci">
+          <div class="ci-ico">📧</div>
+          <div>
+            <div class="ci-lbl">Email</div>
+            <div class="ci-val"><a href="mailto:n_aveen@outlook.com">n_aveen@outlook.com</a></div>
+            <button class="copy-b" data-v="n_aveen@outlook.com" aria-label="Copy email">
+              <svg style="width:10px;height:10px;fill:currentColor" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+              Copy
+            </button>
+          </div>
+        </div>
+        <div class="ci">
+          <div class="ci-ico">📱</div>
+          <div>
+            <div class="ci-lbl">Phone / WhatsApp</div>
+            <div class="ci-val"><a href="tel:+918077486316">+91 80774 86316</a></div>
+            <button class="copy-b" data-v="+918077486316" aria-label="Copy phone">
+              <svg style="width:10px;height:10px;fill:currentColor" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+              Copy
+            </button>
+          </div>
+        </div>
+        <div class="ci">
+          <div class="ci-ico">💼</div>
+          <div>
+            <div class="ci-lbl">LinkedIn</div>
+            <div class="ci-val"><a href="https://www.linkedin.com/in/naveen-singh-57051ab9/" target="_blank" rel="noopener noreferrer">linkedin.com/in/naveen-singh-57051ab9</a></div>
+          </div>
+        </div>
+        <div class="ci">
+          <div class="ci-ico">📍</div>
+          <div>
+            <div class="ci-lbl">Location &amp; Availability</div>
+            <div class="ci-val">Rishikesh, India · <span style="color:var(--em);font-weight:700">Immediately Available</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer role="contentinfo">
+  <div class="footer-inner">
+    <div>
+      <div class="f-brand">Naveen Singh</div>
+      <div class="f-sub">Senior Angular Architect · GenAI Specialist · © 2026 Naveen Singh · Rishikesh, India</div>
+    </div>
+    <nav class="f-nav" aria-label="Footer navigation">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#ai">GenAI</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="f-soc">
+      <a href="mailto:n_aveen@outlook.com" class="fsoc">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        Email
+      </a>
+      <a href="https://www.linkedin.com/in/naveen-singh-57051ab9/" target="_blank" rel="noopener noreferrer" class="fsoc">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zm2-1a2 2 0 110-4 2 2 0 010 4z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</footer>
+
+<button id="btt" aria-label="Scroll to top">↑</button>
+
+<!-- Resume Viewer -->
+<div id="resume-viewer" role="dialog" aria-modal="true" aria-label="Resume viewer">
+  <div id="resume-header">
+    <a href="Naveen_Singh_Resume.pdf" target="_blank" class="resume-action-btn">Open in New Tab</a>
+    <a href="Naveen_Singh_Resume.pdf" download="Naveen_Singh_Resume.pdf" class="resume-action-btn">Download</a>
+    <button id="close-resume-viewer" class="resume-action-btn">✕ Close</button>
+  </div>
+  <iframe id="resume-iframe" src="Naveen_Singh_Resume.pdf" title="Naveen Singh Resume"></iframe>
+</div>
+
+<!-- THREE.JS CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>

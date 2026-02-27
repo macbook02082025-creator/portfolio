@@ -1,0 +1,201 @@
+{
+  "hero": {
+    "status": "Available Remotely — Worldwide",
+    "name1": "Naveen",
+    "name2": "Singh",
+    "tagline": "<strong>Senior Angular Architect</strong> & <strong>GenAI Integration Engineer</strong> — 8+ years building enterprise-grade platforms processing <strong>$50M+/month</strong> for banking & insurance institutions. Angular internals expert. Production RAG systems. Zero regressions policy.",
+    "chips": [
+      { "value": "8+", "label": "Yrs Enterprise Frontend" },
+      { "value": "v2 → v19", "label": "Angular" },
+      { "value": "40%", "label": "Perf Gain" },
+      { "value": "35%", "label": "Release Dep. ↓" },
+      { "value": "In Production", "label": "RAG + LLM" }
+    ],
+    "stats": [
+      { "value": "9", "suffix": "+", "label": "Years Exp" },
+      { "value": "50", "suffix": "M+", "label": "Monthly Vol" },
+      { "value": "40", "suffix": "%", "label": "Perf Boost" },
+      { "value": "98", "suffix": "%", "label": "LLM Accuracy" }
+    ],
+    "cards": [
+      { "label": "Current Role", "value": "Senior Angular Developer <em>&</em> Frontend Platform Lead", "sub": "Primus Software · Jun 2021 — Present" },
+      { "label": "Specialization", "value": "Angular <em>v2→v19</em> · RAG / LLM Architecture", "sub": "Zero regressions · Production GenAI · Micro-frontends" },
+      { "label": "Platform Scale", "value": "<em>$50M+</em>/month Banking Institution", "sub": "12-engineer org · 3 product squads · 1000+ daily users" }
+    ]
+  },
+  "metrics": [
+    { "value": "50", "suffix": "M+", "label": "Monthly Transaction Volume", "sub": "Banking platform under ownership" },
+    { "value": "40", "suffix": "%", "label": "LCP Performance Gain", "sub": "4s → 2.4s via Signal-based architecture" },
+    { "value": "98", "suffix": "%", "label": "LLM-as-Judge Accuracy", "sub": "Against 500+ human expert benchmarks" },
+    { "value": "6", "suffix": "wk", "label": "RAG Platform Ramp Time", "sub": "Zero → production GenAI, regulated banking" }
+  ],
+  "about": {
+    "bio": [
+      "I'm a <strong>Senior Angular Architect and Frontend Platform Lead</strong> with 8+ years of enterprise experience, owning the full-stack Angular strategy for a $50M+/month banking institution at Primus Software.",
+      "My edge is <strong>systematic mastery under pressure</strong> — I drove Angular v6→v19 migrations with zero regressions, designed zone-less Signal architectures improving core web vitals by 40%, and built a production RAG platform from scratch in 6 weeks in a regulated financial environment.",
+      "I don't just integrate AI — I <strong>architect compliance-ready GenAI pipelines</strong> with hallucination mitigation, source attribution, and full observability. Every system I ship is production-ready, auditable, and built to last."
+    ],
+    "philosophies": [
+      {
+        "title": "Architecture Philosophy",
+        "text": "I treat frontend as a product discipline — not just UI implementation. Every architectural decision is evaluated on longevity, team scalability, and observable performance impact. I formalize decisions through ADRs and architecture guilds to make institutional knowledge durable."
+      },
+      {
+        "title": "Angular Internals Depth",
+        "text": "Ivy renderer internals, zone-less change detection, @defer-first loading models, Signal fine-grained reactivity, and custom schematic-driven migration tooling. I've authored internal playbooks on Signals migration and @defer adoption that are now standard across the org.",
+        "chips": ["Ivy Renderer", "Zone-less", "Signals", "@defer", "Hydration-aware SSR"]
+      },
+      {
+        "title": "GenAI Engineering Approach",
+        "text": "Production AI in regulated environments requires more than a chat widget. My stack includes 5-layer hallucination mitigation, source-attribution UI, intent-aware prompt routing, and LangSmith/Arize Phoenix observability — every output auditable by compliance teams."
+      },
+      {
+        "title": "Knowledge Sharing",
+        "text": "Delivered Angular platform talks at Primus — Signals migration playbook, custom schematics strategy, @defer-first loading model. Ran an 18-month structured mentorship programme growing 3 junior engineers to mid-level."
+      }
+    ]
+  },
+  "skills": [
+    {
+      "name": "Angular Internals",
+      "badge": "Core",
+      "tags": ["Ivy Renderer", "Zone-less Architecture", "@defer Blocks", "Signals — Fine-grained", "Change Detection", "Custom Schematics", "Hierarchical DI", "Hydration-aware SSR", "Angular DevTools"]
+    },
+    {
+      "name": "Angular Ecosystem",
+      "badge": "Core",
+      "tags": ["Angular v2–v19", "TypeScript", "RxJS — Custom Operators", "NgRx Signal Store", "Angular Material", "Angular CDK", "Analog.js", "Standalone Components", "Angular Universal"]
+    },
+    {
+      "name": "Frontend Platform",
+      "badge": "Core",
+      "tags": ["Micro-Frontend Architecture", "Module Federation", "Nx Monorepo", "Web Vitals — LCP/CLS/INP", "Lighthouse CI", "Bundle Analysis", "Tree-shaking", "Design Systems", "Perf Budgets"]
+    },
+    {
+      "name": "Generative AI & LLM",
+      "badge": "Emerging Lead",
+      "tags": ["RAG Architecture", "LangChain", "FAISS — IVF-PQ", "Prompt Engineering", "Hallucination Mitigation", "LLM-as-Judge", "SSE Token Streaming", "LangSmith", "Token Budget Optimisation", "Semantic Reranking", "CoT Reasoning", "Drift Detection", "Azure Document Intelligence", "Gemini API", "Claude API", "HITL Pipelines", "Pinecone", "Arize Phoenix"]
+    },
+    {
+      "name": "Governance & DevOps",
+      "badge": "Practitioner",
+      "tags": ["ADR Formalization", "Architecture Guild", "SonarQube", "Lighthouse CI", "Docker", "CI/CD Pipelines", "Auth0 / JWT / RBAC", "Jasmine / Karma", "GitHub Actions", "AWS", "Agile / Scrum"]
+    },
+    {
+      "name": "Emerging & Cross-Platform",
+      "badge": "Active R&D",
+      "tags": ["React / React Native 0.82", "Offline-First Architecture", "WatermelonDB / SQLite", "LibSodium E2E Encryption", "Node.js", "FastAPI — Python", "Tailwind CSS"]
+    }
+  ],
+  "experience": [
+    {
+      "period": "Nov 2019 — Present · 6+ yrs",
+      "company": "Primus Software",
+      "role": "Senior Angular Developer & Frontend Platform Lead",
+      "stack": "Angular 6-19 · TypeScript · RxJS · Signals · Standalone Components · @defer · Module Federation · Nx · SSR · REST APIs · Docker · CI/CD · SonarQube · Lighthouse CI · LangChain · FAISS · FastAPI",
+      "highlight": "⚡ Platform Architect — $50M+/month banking platform · 12-engineer org",
+      "points": [
+        "Sole architect of enterprise-wide Angular upgrade programme: <strong>v6 → v19 with zero regressions</strong>. Built custom schematics, automated safe patterns with ng-morpheus. Reduced bundle size 30% via @defer-first architecture.",
+        "Designed and shipped <strong>zone-less, Signal-based architecture</strong> improving LCP from 4s to 2.4s (40%), making the platform the fastest-loading product in the client portfolio. Enforced via Lighthouse CI performance budgets.",
+        "Architected <strong>Webpack Module Federation micro-frontend platform</strong> — 5 independently deployable domains, 35% reduction in cross-team release dependencies.",
+        "Built <strong>production RAG platform</strong> from zero GenAI knowledge in 6 weeks: LangChain + FAISS IVF-PQ, sub-500ms p95 retrieval on 50k documents, 5-layer hallucination mitigation, full observability stack.",
+        "Established architecture guild, formalized ADRs. 95% sprint adherence over 18 months as C-suite technical liaison. Grew 3 junior developers to mid-level through structured mentorship."
+      ]
+    },
+    {
+      "period": "Jan 2017 — Oct 2019 · 2 yr 10 mo",
+      "company": "Cartel First",
+      "role": "Angular Developer",
+      "stack": "Angular v2–v9 · TypeScript · RxJS · NgRx · REST APIs · SCSS",
+      "points": [
+        "Developed enterprise Angular applications for BFSI clients. Implemented complex reactive data flows with RxJS and NgRx state management.",
+        "Led front-end integration of RESTful APIs and WebSocket-driven real-time dashboards for trading and banking platforms.",
+        "Drove code quality initiatives: established team lint standards, review checklists, and onboarding documentation reducing new-hire ramp time by ~30%."
+      ]
+    }
+  ],
+  "projects": {
+    "featured": [
+      {
+        "period": "Nov 2019 — Present · Primus Software",
+        "name": "DigiGO — Banking Platform",
+        "sub": "Enterprise Banking Core · Angular Architecture Owner",
+        "desc": "Central Angular platform powering a $50M+/month banking institution. Owned the full lifecycle: Angular v6→v19 migration with zero regressions, zone-less/Signal architecture, Webpack Module Federation micro-frontends, and Lighthouse CI performance governance. 12-engineer org, 3 product squads, 1,000+ daily users.",
+        "metric": "▸ 40% load-time reduction · 35% fewer release deps · 30% bundle size ↓ · 95% sprint adherence",
+        "tags": ["Angular v19", "TypeScript", "RxJS", "Signals", "Zone-less", "Module Federation", "Nx", "SSR", "Lighthouse CI", "LangChain", "FAISS"],
+        "categories": "enterprise platform genai"
+      },
+      {
+        "period": "Aug 2025 – Dec 2025 · Primus Software",
+        "name": "Intelligent Document Processing Platform (IDP)",
+        "sub": "Enterprise AI · Banking Domain",
+        "desc": "Enterprise AI platform replacing manual financial document workflows with LLM-powered extraction, RAG-based retrieval, and compliance-grade Human-in-the-Loop review — deployed for banking KYC, onboarding, and operational document types.",
+        "metric": "▸ Token budget ↓ 30% · Hallucination rate ↓ · Sub-500ms p95 retrieval · 98%+ LLM-as-Judge alignment",
+        "tags": ["React", "TypeScript", "Azure Document Intelligence", "LangChain", "FAISS (IVF-PQ)", "Google Gemini API", "Claude API", "Mistral 7B", "Auth0", "JWT"],
+        "categories": "enterprise platform genai"
+      }
+    ],
+    "regular": [
+      {
+        "badge": "Independent",
+        "period": "Feb 2026 – Present",
+        "name": "Mycroft - AI Dev Assistant",
+        "tag": "AI-Powered Development Assistant Platform",
+        "body": "Independently architecting Mycroft - an intelligent AI-powered development assistant platform revolutionizing code quality, engineering productivity, and developer experience across enterprise teams. Context-aware suggestions, intelligent code review, smart debugging, architectural guidance.",
+        "metric": "▸ 15 beta testers · 35% review time ↓ · 92% bug ID accuracy · Sub-2s responses",
+        "tags": ["Node.js", "LangChain", "GPT-4", "Custom RAG", "Pinecone", "React", "TypeScript", "Docker", "AWS"],
+        "categories": "independent genai platform"
+      },
+      {
+        "badge": "Independent",
+        "period": "Dec 2025 – Present",
+        "name": "CrisisMesh – Offline Mesh App",
+        "tag": "Offline Mesh Communication App",
+        "body": "Personal R&D project — offline-first, delay-tolerant mesh messaging app for communication when internet and cellular networks are unavailable. Implements store-and-forward mesh model, integrates Apple Multipeer, Wi-Fi Direct, Bluetooth discovery.",
+        "metric": "▸ Store-and-forward mesh · Encrypted · Multi-platform offline",
+        "tags": ["React Native 0.82", "TypeScript", "WatermelonDB", "SQLite", "LibSodium", "LibQuiet"],
+        "categories": "independent mobile"
+      },
+      {
+        "badge": "Independent",
+        "period": "Mar 2025 – Apr 2025",
+        "name": "AI-Enabled Enterprise Dashboard",
+        "tag": "Angular 20+ · AI-powered Insights",
+        "body": "Angular 20+ enterprise analytics platform with AI-powered data exploration — enabling operations teams to query, visualize, and analyze complex datasets through natural language and intelligent chart recommendations. Integrated AI-powered chart recommendation engine, built natural language query interface.",
+        "metric": "▸ NL → dynamic filters · Auto chart type recommendations · Dynamic charting engine",
+        "tags": ["Angular 20+", "TypeScript", "Angular Material", "Chart.js", "Tailwind CSS", "SCSS"],
+        "categories": "independent platform"
+      },
+      {
+        "badge": "Independent",
+        "period": "Mar 2024 – May 2024",
+        "name": "UI Builder",
+        "tag": "Low-Code Form & UI Builder",
+        "body": "Low-code Form and UI Builder enabling non-developers to assemble production-ready Angular interfaces without writing code — powered by a JSON-driven dynamic form engine and drag-and-drop canvas. Built Smart Form Builder, Canvas-IQ visual builder, live Tailwind styling editor.",
+        "metric": "▸ Zero-code · Two-way binding · Responsive previews · No-code backend integration",
+        "tags": ["Angular 20+", "TypeScript", "Angular Material", "Angular CDK", "Tailwind CSS", "SCSS", "Sortable.js"],
+        "categories": "independent platform"
+      },
+      {
+        "badge": "Production",
+        "period": "Feb 2022 – May 2025 · Primus",
+        "name": "Consolidated Billing",
+        "tag": "Enterprise Billing Management",
+        "body": "Enterprise billing management platform centralizing invoicing, adjuster management, and claim-related billing for finance and operations teams. Designed automated invoice generation, built role-based views, and developed advanced reusable UI components. Maintained performance, WCAG accessibility, and code maintainability across a 3-year lifecycle.",
+        "metric": "▸ Automated invoice generation · WCAG compliant · 3-yr lifecycle · Minimized human error",
+        "tags": ["Angular (v2+ to latest)", "Angular Universal", "TypeScript", "RxJS", "Angular Material"],
+        "categories": "enterprise"
+      },
+      {
+        "badge": "Production",
+        "period": "Nov 2021 — Feb 2022 · Primus",
+        "name": "Afordit Bank",
+        "tag": "Performance & Quality — Banking",
+        "body": "Lazy loading for feature modules, pure pipes and optimized change detection for high-traffic banking views. Comprehensive unit tests increasing coverage and catching regressions earlier in dev cycles.",
+        "metric": "▸ Bundle ↓ · TTI improved · Test coverage ↑",
+        "tags": ["Angular", "TypeScript", "Jasmine", "Karma"],
+        "categories": "enterprise"
+      }
+    ]
+  }
+}
