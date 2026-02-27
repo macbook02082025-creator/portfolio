@@ -5,10 +5,12 @@ function renderContent(data) {
   document.getElementById('hero-name2').textContent = data.hero.name2;
   document.getElementById('hero-tagline').innerHTML = data.hero.tagline;
   const heroChips = document.getElementById('hero-chips');
+  heroChips.innerHTML = ''; // Clear existing
   data.hero.chips.forEach(chip => {
     heroChips.innerHTML += `<div class="hchip"><span class="hchip-val">${chip.value}</span>&nbsp;${chip.label}</div>`;
   });
   const heroStats = document.getElementById('hero-stats');
+  heroStats.innerHTML = ''; // Clear existing
   data.hero.stats.forEach(stat => {
     heroStats.innerHTML += `
       <div class="hstat">
@@ -17,6 +19,7 @@ function renderContent(data) {
       </div>`;
   });
   const heroCards = document.getElementById('hero-cards');
+  heroCards.innerHTML = ''; // Clear existing
   data.hero.cards.forEach(card => {
     heroCards.innerHTML += `
       <div class="hcard">
@@ -26,8 +29,16 @@ function renderContent(data) {
       </div>`;
   });
 
+  // Marquee Section
+  const marqueeInner = document.querySelector('.mq-inner');
+  if (marqueeInner && data.marquee) {
+    const marqueeContent = data.marquee.map(item => `<div class="mq-item"><span class="mq-t">${item}</span><span class="mq-sep"></span></div>`).join('');
+    marqueeInner.innerHTML = marqueeContent + marqueeContent; // Duplicate for seamless loop
+  }
+
   // Metrics Section
   const metricsRow = document.getElementById('metrics-row');
+  metricsRow.innerHTML = ''; // Clear existing
   data.metrics.forEach(metric => {
     metricsRow.innerHTML += `
       <div class="metric" role="listitem">
@@ -40,10 +51,12 @@ function renderContent(data) {
 
   // About Section
   const aboutBio = document.getElementById('about-bio');
+  aboutBio.innerHTML = ''; // Clear existing
   data.about.bio.forEach(p => {
     aboutBio.innerHTML += `<p>${p}</p>`;
   });
   const aboutPhils = document.getElementById('about-philosophies');
+  aboutPhils.innerHTML = ''; // Clear existing
   data.about.philosophies.forEach(phil => {
     let chipsHtml = '';
     if (phil.chips) {
@@ -59,6 +72,7 @@ function renderContent(data) {
 
   // Skills Section
   const skillsGrid = document.getElementById('skills-grid');
+  skillsGrid.innerHTML = ''; // Clear existing
   data.skills.forEach(skill => {
     skillsGrid.innerHTML += `
       <div class="sg">
@@ -78,6 +92,7 @@ function renderContent(data) {
 
   // Experience Section
   const expTimeline = document.getElementById('experience-timeline');
+  expTimeline.innerHTML = ''; // Clear existing
   data.experience.forEach(job => {
     let highlightHtml = '';
     if(job.highlight) {
@@ -101,6 +116,7 @@ function renderContent(data) {
 
   // Projects Section
   const featuredProjects = document.getElementById('featured-projects');
+  featuredProjects.innerHTML = ''; // Clear existing
   data.projects.featured.forEach(proj => {
     featuredProjects.innerHTML += `
       <article class="pf-card" data-fc="${proj.categories}">
@@ -117,6 +133,7 @@ function renderContent(data) {
       </article>`;
   });
   const regularProjects = document.getElementById('regular-projects');
+  regularProjects.innerHTML = ''; // Clear existing
   data.projects.regular.forEach(proj => {
     regularProjects.innerHTML += `
       <article class="pc r" data-rc="${proj.categories}">
@@ -133,11 +150,52 @@ function renderContent(data) {
         </div>
       </article>`;
   });
+
+  // GenAI Section
+  const genaiBody = document.getElementById('genai-body');
+  if (genaiBody && data.genAI && data.genAI.body) {
+    genaiBody.innerHTML = data.genAI.body.map(p => `<p>${p}</p>`).join('');
+  }
+  const genaiCallout = document.getElementById('genai-callout');
+  if (genaiCallout && data.genAI && data.genAI.callout) {
+    genaiCallout.innerHTML = `
+      <div class="ai-callout-h">${data.genAI.callout.title}</div>
+      <p>${data.genAI.callout.text}</p>`;
+  }
+  const genaiPillars = document.getElementById('genai-pillars');
+  if (genaiPillars && data.genAI && data.genAI.pillars) {
+    genaiPillars.innerHTML = ''; // Clear existing
+    data.genAI.pillars.forEach((pillar, i) => {
+      genaiPillars.innerHTML += `
+        <div class="ai-pillar">
+          <div class="card-shine" aria-hidden="true"></div>
+          <div class="aip-num">${String(i + 1).padStart(2, '0')}</div>
+          <div class="aip-title">${pillar.title}</div>
+          <p class="aip-text">${pillar.text}</p>
+        </div>`;
+    });
+  }
+
+  // Theme Switcher
+  const themePanel = document.getElementById('theme-panel');
+  if (themePanel && data.themes) {
+    const label = themePanel.querySelector('.tp-label');
+    themePanel.innerHTML = ''; // Clear existing
+    if(label) themePanel.appendChild(label); // Re-add label
+    data.themes.forEach(theme => {
+      const swatches = theme.colors.map(color => `<span class="theme-swatch" style="background:${color}"></span>`).join('');
+      themePanel.innerHTML += `
+        <button class="theme-btn" data-theme="${theme.id}" role="option">
+          <span class="theme-swatches">${swatches}</span>
+          <span><div class="theme-name">${theme.name}</div><div class="theme-desc">${theme.desc}</div></span>
+        </button>`;
+    });
+  }
 }
 
 
 // ═══════════════════════════════════════
-// THEMES — 8 WORLD-CLASS COLOR SCHEMES
+// THEMES
 // ═══════════════════════════════════════
 var THEMES = {
   'aurora': {
@@ -168,47 +226,9 @@ var THEMES = {
     '--txt2':     '#94A3B8',
     '--txt3':     '#475569',
     '--txt4':     '#2D3A52',
-    '--mesh1':    'rgba(139,92,246,.12)',
-    '--mesh2':    'rgba(6,182,212,.09)',
-    '--mesh3':    'rgba(245,158,11,.04)',
     '--particle1':'#8B5CF6',
     '--particle2':'#06B6D4',
     '--particle3':'#F59E0B',
-  },
-  'midnight-rose': {
-    '--void':     '#050208',
-    '--abyss':    '#0A0510',
-    '--base':     '#110818',
-    '--raised':   '#190D24',
-    '--lifted':   '#20112E',
-    '--border':   'rgba(236,72,153,.06)',
-    '--border2':  'rgba(236,72,153,.14)',
-    '--v':        '#DB2777',
-    '--v2':       '#EC4899',
-    '--v3':       '#F9A8D4',
-    '--v-g':      'rgba(236,72,153,.08)',
-    '--v-b':      'rgba(236,72,153,.22)',
-    '--v-glow':   'rgba(236,72,153,.4)',
-    '--c':        '#EA580C',
-    '--c2':       '#F97316',
-    '--c3':       '#FDBA74',
-    '--c-g':      'rgba(249,115,22,.08)',
-    '--c-b':      'rgba(249,115,22,.2)',
-    '--gold':     '#EAB308',
-    '--gold2':    '#FCD34D',
-    '--gold-g':   'rgba(234,179,8,.07)',
-    '--gold-b':   'rgba(234,179,8,.18)',
-    '--em':       '#F472B6',
-    '--txt1':     '#FDF4FF',
-    '--txt2':     '#C084FC',
-    '--txt3':     '#7E22CE',
-    '--txt4':     '#4A1772',
-    '--mesh1':    'rgba(219,39,119,.14)',
-    '--mesh2':    'rgba(249,115,22,.09)',
-    '--mesh3':    'rgba(234,179,8,.05)',
-    '--particle1':'#EC4899',
-    '--particle2':'#F97316',
-    '--particle3':'#FCD34D',
   },
   'neon-tokyo': {
     '--void':     '#000000',
@@ -238,212 +258,124 @@ var THEMES = {
     '--txt2':     '#A0AEC0',
     '--txt3':     '#4A5568',
     '--txt4':     '#2D3748',
-    '--mesh1':    'rgba(0,255,136,.1)',
-    '--mesh2':    'rgba(255,45,120,.08)',
-    '--mesh3':    'rgba(0,207,255,.05)',
     '--particle1':'#00FF88',
     '--particle2':'#FF2D78',
     '--particle3':'#00CFFF',
   },
-  'arctic': {
-    '--void':     '#020509',
-    '--abyss':    '#050C14',
-    '--base':     '#081220',
-    '--raised':   '#0D1C30',
-    '--lifted':   '#122438',
+  'solaris': {
+    '--void':     '#080402',
+    '--abyss':    '#100A05',
+    '--base':     '#180F08',
+    '--raised':   '#24160D',
+    '--lifted':   '#2E1D12',
+    '--border':   'rgba(249,115,22,.07)',
+    '--border2':  'rgba(249,115,22,.16)',
+    '--v':        '#F97316',
+    '--v2':       '#FB923C',
+    '--v3':       '#FDBA74',
+    '--v-g':      'rgba(249,115,22,.08)',
+    '--v-b':      'rgba(249,115,22,.22)',
+    '--v-glow':   'rgba(249,115,22,.4)',
+    '--c':        '#EF4444',
+    '--c2':       '#F87171',
+    '--c3':       '#FCA5A5',
+    '--c-g':      'rgba(239,68,68,.08)',
+    '--c-b':      'rgba(239,68,68,.2)',
+    '--gold':     '#FBBF24',
+    '--gold2':    '#FCD34D',
+    '--gold-g':   'rgba(251,191,36,.08)',
+    '--gold-b':   'rgba(251,191,36,.18)',
+    '--em':       '#FBBF24',
+    '--txt1':     '#FFF7ED',
+    '--txt2':     '#FED7AA',
+    '--txt3':     '#B45309',
+    '--txt4':     '#7C2D12',
+    '--particle1':'#F97316',
+    '--particle2':'#EF4444',
+    '--particle3':'#FBBF24',
+  },
+  'oceanic': {
+    '--void':     '#020609',
+    '--abyss':    '#050C13',
+    '--base':     '#08111C',
+    '--raised':   '#0E1A2A',
+    '--lifted':   '#132235',
     '--border':   'rgba(59,130,246,.07)',
     '--border2':  'rgba(59,130,246,.16)',
-    '--v':        '#1D4ED8',
-    '--v2':       '#3B82F6',
+    '--v':        '#3B82F6',
+    '--v2':       '#60A5FA',
     '--v3':       '#93C5FD',
     '--v-g':      'rgba(59,130,246,.08)',
     '--v-b':      'rgba(59,130,246,.22)',
     '--v-glow':   'rgba(59,130,246,.4)',
-    '--c':        '#0EA5E9',
-    '--c2':       '#38BDF8',
-    '--c3':       '#BAE6FD',
-    '--c-g':      'rgba(14,165,233,.08)',
-    '--c-b':      'rgba(14,165,233,.2)',
-    '--gold':     '#E2E8F0',
-    '--gold2':    '#F8FAFC',
-    '--gold-g':   'rgba(226,232,240,.05)',
-    '--gold-b':   'rgba(226,232,240,.12)',
-    '--em':       '#38BDF8',
+    '--c':        '#14B8A6',
+    '--c2':       '#2DD4BF',
+    '--c3':       '#5EEAD4',
+    '--c-g':      'rgba(20,184,166,.08)',
+    '--c-b':      'rgba(20,184,166,.2)',
+    '--gold':     '#67E8F9',
+    '--gold2':    '#A5F3FC',
+    '--gold-g':   'rgba(103,232,249,.07)',
+    '--gold-b':   'rgba(103,232,249,.15)',
+    '--em':       '#2DD4BF',
     '--txt1':     '#F0F9FF',
     '--txt2':     '#7DD3FC',
-    '--txt3':     '#2563EB',
-    '--txt4':     '#1E3A5F',
-    '--mesh1':    'rgba(59,130,246,.12)',
-    '--mesh2':    'rgba(14,165,233,.09)',
-    '--mesh3':    'rgba(226,232,240,.03)',
+    '--txt3':     '#0C4A6E',
+    '--txt4':     '#082f49',
     '--particle1':'#3B82F6',
-    '--particle2':'#38BDF8',
-    '--particle3':'#BAE6FD',
+    '--particle2':'#14B8A6',
+    '--particle3':'#67E8F9',
   },
-  'emerald': {
-    '--void':     '#020807',
-    '--abyss':    '#04100E',
-    '--base':     '#071815',
-    '--raised':   '#0C241F',
-    '--lifted':   '#102D27',
-    '--border':   'rgba(16,185,129,.07)',
-    '--border2':  'rgba(16,185,129,.16)',
-    '--v':        '#059669',
-    '--v2':       '#10B981',
-    '--v3':       '#6EE7B7',
-    '--v-g':      'rgba(16,185,129,.08)',
-    '--v-b':      'rgba(16,185,129,.22)',
-    '--v-glow':   'rgba(16,185,129,.4)',
-    '--c':        '#7C3AED',
-    '--c2':       '#A78BFA',
-    '--c3':       '#C4B5FD',
-    '--c-g':      'rgba(167,139,250,.08)',
-    '--c-b':      'rgba(167,139,250,.2)',
-    '--gold':     '#34D399',
-    '--gold2':    '#6EE7B7',
-    '--gold-g':   'rgba(52,211,153,.08)',
-    '--gold-b':   'rgba(52,211,153,.18)',
-    '--em':       '#10B981',
-    '--txt1':     '#F0FDF4',
-    '--txt2':     '#86EFAC',
-    '--txt3':     '#166534',
-    '--txt4':     '#14532D',
-    '--mesh1':    'rgba(16,185,129,.12)',
-    '--mesh2':    'rgba(124,58,237,.09)',
-    '--mesh3':    'rgba(52,211,153,.05)',
-    '--particle1':'#10B981',
-    '--particle2':'#A78BFA',
-    '--particle3':'#6EE7B7',
-  },
-  'crimson': {
-    '--void':     '#060204',
-    '--abyss':    '#0C0407',
-    '--base':     '#14060A',
-    '--raised':   '#1E0810',
-    '--lifted':   '#280A14',
-    '--border':   'rgba(239,68,68,.07)',
-    '--border2':  'rgba(239,68,68,.16)',
-    '--v':        '#DC2626',
-    '--v2':       '#EF4444',
-    '--v3':       '#FCA5A5',
-    '--v-g':      'rgba(239,68,68,.08)',
-    '--v-b':      'rgba(239,68,68,.22)',
-    '--v-glow':   'rgba(239,68,68,.4)',
-    '--c':        '#EA580C',
-    '--c2':       '#F97316',
-    '--c3':       '#FDBA74',
-    '--c-g':      'rgba(249,115,22,.08)',
-    '--c-b':      'rgba(249,115,22,.2)',
-    '--gold':     '#CBD5E1',
-    '--gold2':    '#F1F5F9',
-    '--gold-g':   'rgba(203,213,225,.04)',
-    '--gold-b':   'rgba(203,213,225,.1)',
-    '--em':       '#F97316',
-    '--txt1':     '#FFF5F5',
-    '--txt2':     '#FECACA',
-    '--txt3':     '#9F1239',
-    '--txt4':     '#7F1D1D',
-    '--mesh1':    'rgba(239,68,68,.12)',
-    '--mesh2':    'rgba(249,115,22,.09)',
-    '--mesh3':    'rgba(203,213,225,.03)',
-    '--particle1':'#EF4444',
-    '--particle2':'#F97316',
-    '--particle3':'#FDBA74',
-  },
-  'royal-gold': {
-    '--void':     '#050402',
-    '--abyss':    '#0C0A04',
-    '--base':     '#140E06',
-    '--raised':   '#1E1608',
-    '--lifted':   '#261C0A',
-    '--border':   'rgba(245,158,11,.07)',
-    '--border2':  'rgba(245,158,11,.18)',
-    '--v':        '#D97706',
-    '--v2':       '#F59E0B',
-    '--v3':       '#FCD34D',
-    '--v-g':      'rgba(245,158,11,.08)',
-    '--v-b':      'rgba(245,158,11,.22)',
-    '--v-glow':   'rgba(245,158,11,.4)',
-    '--c':        '#FBBF24',
-    '--c2':       '#FDE68A',
-    '--c3':       '#FEF3C7',
-    '--c-g':      'rgba(251,191,36,.08)',
-    '--c-b':      'rgba(251,191,36,.18)',
-    '--gold':     '#E2E8F0',
-    '--gold2':    '#F8FAFC',
-    '--gold-g':   'rgba(226,232,240,.04)',
-    '--gold-b':   'rgba(226,232,240,.1)',
-    '--em':       '#FCD34D',
-    '--txt1':     '#FFFBEB',
-    '--txt2':     '#FDE68A',
-    '--txt3':     '#92400E',
-    '--txt4':     '#78350F',
-    '--mesh1':    'rgba(245,158,11,.14)',
-    '--mesh2':    'rgba(251,191,36,.09)',
-    '--mesh3':    'rgba(226,232,240,.03)',
-    '--particle1':'#F59E0B',
-    '--particle2':'#FCD34D',
-    '--particle3':'#E2E8F0',
-  },
-  'sakura': {
-    '--void':     '#040206',
-    '--abyss':    '#08040C',
-    '--base':     '#100612',
-    '--raised':   '#18091C',
-    '--lifted':   '#1E0C22',
-    '--border':   'rgba(244,114,182,.06)',
-    '--border2':  'rgba(244,114,182,.15)',
-    '--v':        '#DB2777',
-    '--v2':       '#F472B6',
-    '--v3':       '#FBCFE8',
-    '--v-g':      'rgba(244,114,182,.07)',
-    '--v-b':      'rgba(244,114,182,.2)',
-    '--v-glow':   'rgba(244,114,182,.38)',
-    '--c':        '#7C3AED',
-    '--c2':       '#A78BFA',
-    '--c3':       '#DDD6FE',
-    '--c-g':      'rgba(167,139,250,.08)',
-    '--c-b':      'rgba(167,139,250,.2)',
-    '--gold':     '#22D3EE',
-    '--gold2':    '#A5F3FC',
-    '--gold-g':   'rgba(34,211,238,.06)',
-    '--gold-b':   'rgba(34,211,238,.15)',
-    '--em':       '#F472B6',
-    '--txt1':     '#FDF2F8',
-    '--txt2':     '#F0ABFC',
-    '--txt3':     '#86198F',
-    '--txt4':     '#701A75',
-    '--mesh1':    'rgba(244,114,182,.12)',
-    '--mesh2':    'rgba(167,139,250,.09)',
-    '--mesh3':    'rgba(34,211,238,.04)',
-    '--particle1':'#F472B6',
-    '--particle2':'#A78BFA',
-    '--particle3':'#22D3EE',
-  },
+  'jade': {
+    '--void':     '#030806',
+    '--abyss':    '#07100C',
+    '--base':     '#0B1811',
+    '--raised':   '#102319',
+    '--lifted':   '#152E20',
+    '--border':   'rgba(34,197,94,.07)',
+    '--border2':  'rgba(34,197,94,.16)',
+    '--v':        '#22C55E',
+    '--v2':       '#4ADE80',
+    '--v3':       '#86EFAC',
+    '--v-g':      'rgba(34,197,94,.08)',
+    '--v-b':      'rgba(34,197,94,.22)',
+    '--v-glow':   'rgba(34,197,94,.4)',
+    '--c':        '#84CC16',
+    '--c2':       '#A3E635',
+    '--c3':       '#BEF264',
+    '--c-g':      'rgba(132,204,22,.08)',
+    '--c-b':      'rgba(132,204,22,.2)',
+    '--gold':     '#10B981',
+    '--gold2':    '#34D399',
+    '--gold-g':   'rgba(16,185,129,.08)',
+    '--gold-b':   'rgba(16,185,129,.18)',
+    '--em':       '#A3E635',
+    '--txt1':     '#F7FEE7',
+    '--txt2':     '#D9F99D',
+    '--txt3':     '#3F6212',
+    '--txt4':     '#1A2E05',
+    '--particle1':'#4ADE80',
+    '--particle2':'#A3E635',
+    '--particle3':'#34D399',
+  }
 };
 
 // Mesh gradient overrides per theme (injected as inline style on .mesh)
 var MESH_GRADIENTS = {
-  'aurora':        'rgba(139,92,246,.12),rgba(6,182,212,.09),rgba(245,158,11,.04)',
-  'midnight-rose': 'rgba(219,39,119,.14),rgba(249,115,22,.09),rgba(234,179,8,.05)',
-  'neon-tokyo':    'rgba(0,255,136,.1),rgba(255,45,120,.08),rgba(0,207,255,.05)',
-  'arctic':        'rgba(59,130,246,.12),rgba(14,165,233,.09),rgba(226,232,240,.03)',
-  'emerald':       'rgba(16,185,129,.12),rgba(124,58,237,.09),rgba(52,211,153,.05)',
-  'crimson':       'rgba(239,68,68,.12),rgba(249,115,22,.09),rgba(203,213,225,.03)',
-  'royal-gold':    'rgba(245,158,11,.14),rgba(251,191,36,.09),rgba(226,232,240,.03)',
-  'sakura':        'rgba(244,114,182,.12),rgba(167,139,250,.09),rgba(34,211,238,.04)',
+  'aurora':     'rgba(139,92,246,.12),rgba(6,182,212,.09),rgba(245,158,11,.04)',
+  'neon-tokyo': 'rgba(0,255,136,.1),rgba(255,45,120,.08),rgba(0,207,255,.05)',
+  'solaris':    'rgba(249,115,22,.12),rgba(239,68,68,.09),rgba(251,191,36,.05)',
+  'oceanic':    'rgba(59,130,246,.12),rgba(20,184,166,.09),rgba(103,232,249,.04)',
+  'jade':       'rgba(34,197,94,.12),rgba(132,204,22,.09),rgba(16,185,129,.05)',
 };
 
 // Contact section bg overrides
 var CONTACT_GRADIENTS = {
-  'aurora':        'linear-gradient(135deg,#7C3AED,#1e1b4b 50%,#0f172a)',
-  'midnight-rose': 'linear-gradient(135deg,#9D174D,#3B0764 50%,#0a0014)',
-  'neon-tokyo':    'linear-gradient(135deg,#003820,#1a0030 50%,#000005)',
-  'arctic':        'linear-gradient(135deg,#1e3a8a,#0c2340 50%,#020509)',
-  'emerald':       'linear-gradient(135deg,#065F46,#1E1B4B 50%,#020807)',
-  'crimson':       'linear-gradient(135deg,#7F1D1D,#1C0A0F 50%,#060204)',
-  'royal-gold':    'linear-gradient(135deg,#78350F,#27130A 50%,#050402)',
-  'sakura':        'linear-gradient(135deg,#831843,#2E1065 50%,#040206)',
+  'aurora':     'linear-gradient(135deg,#7C3AED,#1e1b4b 50%,#0f172a)',
+  'neon-tokyo': 'linear-gradient(135deg,#003820,#1a0030 50%,#000005)',
+  'solaris':    'linear-gradient(135deg,#B45309,#7C2D12 50%,#080402)',
+  'oceanic':    'linear-gradient(135deg,#0C4A6E,#082f49 50%,#020609)',
+  'jade':       'linear-gradient(135deg,#166534,#1A2E05 50%,#030806)',
 };
 
 var currentTheme = 'aurora';
@@ -458,7 +390,7 @@ function applyTheme(name) {
 
   // Update mesh gradient
   var mesh = document.querySelector('.mesh');
-  if (mesh) {
+  if (mesh && MESH_GRADIENTS[name]) {
     var c = MESH_GRADIENTS[name];
     var colors = c.split(',');
     mesh.style.background =
@@ -470,26 +402,22 @@ function applyTheme(name) {
 
   // Update contact gradient
   var cl = document.querySelector('.cl');
-  if (cl) cl.style.background = CONTACT_GRADIENTS[name];
+  if (cl && CONTACT_GRADIENTS[name]) {
+    cl.style.background = CONTACT_GRADIENTS[name];
+  }
 
   // Update AI callout
   var aiCallout = document.querySelector('.ai-callout');
   if (aiCallout) {
     if (name === 'neon-tokyo') {
       aiCallout.style.background = 'linear-gradient(135deg,#003820,#00CC6A)';
-    } else if (name === 'arctic') {
-      aiCallout.style.background = 'linear-gradient(135deg,#1D4ED8,#0EA5E9)';
-    } else if (name === 'crimson') {
-      aiCallout.style.background = 'linear-gradient(135deg,#DC2626,#EA580C)';
-    } else if (name === 'royal-gold') {
-      aiCallout.style.background = 'linear-gradient(135deg,#92400E,#D97706)';
-    } else if (name === 'sakura') {
-      aiCallout.style.background = 'linear-gradient(135deg,#DB2777,#7C3AED)';
-    } else if (name === 'midnight-rose') {
-      aiCallout.style.background = 'linear-gradient(135deg,#9D174D,#C2410C)';
-    } else if (name === 'emerald') {
-      aiCallout.style.background = 'linear-gradient(135deg,#065F46,#7C3AED)';
-    } else {
+    } else if (name === 'solaris') {
+      aiCallout.style.background = 'linear-gradient(135deg,#B45309,#F97316)';
+    } else if (name === 'oceanic') {
+      aiCallout.style.background = 'linear-gradient(135deg,#0C4A6E,#3B82F6)';
+    } else if (name === 'jade') {
+      aiCallout.style.background = 'linear-gradient(135deg,#166534,#22C55E)';
+    } else { // Default to aurora
       aiCallout.style.background = 'linear-gradient(135deg,var(--v),#1e1b4b)';
     }
   }
@@ -538,6 +466,8 @@ function initThemeSwitcher() {
   var saved = localStorage.getItem('ns-theme');
   if (saved && THEMES[saved]) {
     applyTheme(saved);
+  } else {
+    applyTheme('aurora'); // Default to aurora
   }
 }
 
@@ -554,11 +484,19 @@ document.addEventListener('DOMContentLoaded', function() {
         if (loader) loader.classList.add('done');
         initAll();
       }, 1400);
+    })
+    .catch(error => {
+        console.error("Failed to load portfolio data:", error);
+        // Fallback or error message
+        var loader = document.getElementById('loader');
+        if (loader) loader.classList.add('done');
     });
 });
 setTimeout(function() {
   var loader = document.getElementById('loader');
-  if (loader) loader.classList.add('done');
+  if (loader && !loader.classList.contains('done')) {
+    loader.classList.add('done');
+  }
 }, 3500);
 
 function initAll() {

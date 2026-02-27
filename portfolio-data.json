@@ -197,5 +197,44 @@
         "categories": "enterprise"
       }
     ]
-  }
+  },
+  "marquee": [
+    "Angular v2–v19", "RAG Architecture", "LangChain · FAISS", "Module Federation", "Zero Regressions Policy", "TypeScript · RxJS", "Micro-Frontend", "GenAI · Production LLM", "Web Vitals Governance", "Nx Monorepo"
+  ],
+  "genAI": {
+    "body": [
+      "Most frontend engineers add a chat widget. I <strong>architect the entire AI stack</strong> — from embedding pipelines and vector index tuning to hallucination mitigation and production observability in environments where every output may be reviewed by compliance teams and regulators.",
+      "This includes a <strong>5-layer compliance architecture</strong> ensuring every AI output in banking workflows is audit-ready and legally defensible, with source-attribution UI mapping each claim to its exact source passage.",
+      "Deployed RAG systems processing <strong>10k–50k documents</strong> at sub-500ms p95 retrieval. Built intent-aware prompt routing achieving <strong>98%+ alignment</strong> against 500+ human expert benchmark datasets. Engineered streaming delivery achieving <strong>sub-200ms TTFT</strong>."
+    ],
+    "callout": {
+      "title": "⚡ Ramp Velocity — Core Differentiator",
+      "text": "From <strong>zero GenAI knowledge</strong> to a full demo-ready RAG platform in <strong>6 weeks</strong>. Same systematic methodology applied across Angular v6→v19 and production-ready React in <strong>48 hours</strong> during a critical cross-team release."
+    },
+    "pillars": [
+      {
+        "title": "RAG Architecture & Retrieval",
+        "text": "Adaptive retrieval with dynamic K (3–12), MMR diversity, IVF-PQ indexing (p95: 3–4s → sub-500ms, <2% recall degradation), semantic threshold filtering, and heterogeneous ingestion with pre-embedding normalization reducing false-positive retrieval by 40%."
+      },
+      {
+        "title": "Hallucination Mitigation Pipeline",
+        "text": "5-layer architecture: source-constrained retrieval → confidence scoring → semantic reranking → citation-attribution UI (every claim mapped to exact source passage) → HITL escalation. Near-zero unverified outputs reaching compliance teams."
+      },
+      {
+        "title": "Prompt Engineering & Pipelines",
+        "text": "Intent-aware routing with query classification, few-shot injection per intent class, CoT reasoning for multi-step queries, token budget management (sliding window chunking, pre-counting), and stateful multi-turn context with turn-based eviction across 20+ turns."
+      },
+      {
+        "title": "Observability & Quality",
+        "text": "LangSmith + Arize Phoenix tracking token usage, retrieval latency, and response quality. GPT-4o LLM-as-Judge scoring loops — 98%+ alignment against 500+ human expert benchmarks. Drift detection driving 15% query success improvement over 3 months."
+      }
+    ]
+  },
+  "themes": [
+    { "id": "aurora", "name": "Aurora", "desc": "Violet · Cyan · Gold", "colors": ["#8B5CF6", "#06B6D4", "#F59E0B"] },
+    { "id": "neon-tokyo", "name": "Neon Tokyo", "desc": "Lime · Neon Pink · Cyan", "colors": ["#00FF88", "#FF2D78", "#00CFFF"] },
+    { "id": "solaris", "name": "Solaris", "desc": "Orange · Red · Yellow", "colors": ["#F97316", "#EF4444", "#FBBF24"] },
+    { "id": "oceanic", "name": "Oceanic", "desc": "Blue · Teal · Sky", "colors": ["#3B82F6", "#14B8A6", "#67E8F9"] },
+    { "id": "jade", "name": "Jade", "desc": "Green · Lime · Emerald", "colors": ["#22C55E", "#84CC16", "#10B981"] }
+  ]
 }
