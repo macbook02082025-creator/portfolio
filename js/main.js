@@ -1,9 +1,8 @@
 function renderContent(data) {
   try {
     // Hero Section
-    document.getElementById('hero-status').innerHTML = `<span class-="h-status-dot" aria-hidden="true"></span> ${data.hero.status}`;
+    document.getElementById('hero-status').innerHTML = `<span class="h-status-dot" aria-hidden="true"></span> ${data.hero.status}`;
     document.getElementById('hero-name1').textContent = data.hero.name1;
-alohomora
     document.getElementById('hero-name2').textContent = data.hero.name2;
     document.getElementById('hero-tagline').innerHTML = data.hero.tagline;
     const heroChips = document.getElementById('hero-chips');
@@ -509,7 +508,7 @@ function initThemeSwitcher() {
 // LOADER
 // ═══════════════════════════════════════
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('portfolio-data.json')
+    fetch('portfolio-data.json?v=2')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok ' + response.statusText);
@@ -526,11 +525,7 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .catch(error => {
         console.error("Failed to load or render portfolio data:", error);
-        // Optionally, display an error message to the user
-        var loader = document.getElementById('loader');
-        if (loader) {
-            loader.innerHTML = '<div class="ldr-tag" style="animation:none;opacity:1;">Error loading content.</div>';
-        }
+        document.body.innerHTML = `<pre style="color: white; font-size: 12px; padding: 20px; white-space: pre-wrap; word-wrap: break-word;">${error.stack}</pre>`;
     });
 });
 setTimeout(function() {
@@ -558,14 +553,6 @@ function initAll() {
 
 // ... (rest of the functions remain the same)
 // ... (initThree, initCursor, etc.)
-// ...
-// ...
-// ...
-// ...
-// ...
-// ...
-// ...
-// ...
 // ...
 // ...
 // ...
