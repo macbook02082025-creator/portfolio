@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Naveen Singh — Senior Angular Architect & GenAI Integration Specialist</title>
+<meta name="description" content="Naveen Singh — Senior Angular Architect with 9+ years building $50M+/month enterprise banking platforms. Expert in Angular v2–v19, production Generative AI & RAG architecture, micro-frontends, Web Vitals governance. Available remotely worldwide.">
+<meta name="author" content="Naveen Singh">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#030407">
+<link rel="canonical" href="https://naveensingh.dev/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Naveen Singh — Senior Angular Architect & GenAI Specialist">
+<meta property="og:description" content="9+ years. $50M+/month banking platform. Angular v2→v19 zero regressions. RAG + LLM in production.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- 3D Background (Three.js) -->
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+<!-- Gradient Mesh -->
+<div class="mesh" aria-hidden="true"></div>
+
+<!-- Theme Switcher -->
+<div id="theme-switcher" aria-label="Theme switcher">
+  <button id="theme-toggle-btn" aria-expanded="false" aria-controls="theme-panel">
+    <span class="palette-preview" id="palette-preview-dots">
+      <span class="palette-dot" style="background:#8B5CF6"></span>
+      <span class="palette-dot" style="background:#06B6D4"></span>
+      <span class="palette-dot" style="background:#F59E0B"></span>
+    </span>
+    Themes
+  </button>
+  <div id="theme-panel" role="listbox" aria-label="Color themes">
+    <div class="tp-label">Choose Your Theme</div>
+
+    <button class="theme-btn active" data-theme="aurora" role="option">
+      <span class="theme-swatches">
+        <span class="theme-swatch" style="background:#8B5CF6"></span>
+        <span class="theme-swatch" style="background:#06B6D4"></span>
+        <span class="theme-swatch" style="background:#F59E0B"></span>
+      </span>
+      <span><div class="theme-name">Aurora</div><div class="theme-desc">Violet · Cyan · Gold</div></span>
+    </button>
+
+    <button class="theme-btn" data-theme="midnight-rose" role="option">
+      <span class="theme-swatches">
+        <span class="theme-swatch" style="background:#EC4899"></span>
+        <span class="theme-swatch" style="background:#F97316"></span>
+        <span class="theme-swatch" style="background:#FCD34D"></span>
+      </span>
+      <span><div class="theme-name">Midnight Rose</div><div class="theme-desc">Hot Pink · Orange · Gold</div></span>
+    </button>
+
+    <button class="theme-btn" data-theme="neon-tokyo" role="option">
+      <span class="theme-swatches">
+        <span class="theme-swatch" style="background:#00FF88"></span>
+        <span class="theme-swatch" style="background:#FF2D78"></span>
+        <span class="theme-swatch" style="background:#00CFFF"></span>
+      </span>
+      <span><div class="theme-name">Neon Tokyo</div><div class="theme-desc">Lime · Neon Pink · Cyan</div></span>
+    </button>
+
+    <button class="theme-btn" data-theme="arctic" role="option">
+      <span class="theme-swatches">
+        <span class="theme-swatch" style="background:#3B82F6"></span>
+        <span class="theme-swatch" style="background:#E2E8F0"></span>
+        <span class="theme-swatch" style="background:#38BDF8"></span>
+      </span>
+      <span><div class="theme-name">Arctic Blue</div><div class="theme-desc">Electric Blue · Ice · Sky</div></span>
+    </button>
+
+    <button class="theme-btn" data-theme="emerald" role="option">
+      <span class="theme-swatches">
+        <span class="theme-swatch" style="background:#10B981"></span>
+        <span class="theme-swatch" style="background:#34D399"></span>
+        <span class="theme-swatch" style="background:#A78BFA"></span>
+      </span>
+      <span><div class="theme-name">Emerald Night</div><div class="theme-desc">Emerald · Mint · Violet</div></span>
+    </button>
+
+    <button class="theme-btn" data-theme="crimson" role="option">
+      <span class="theme-swatches">
+        <span class="theme-swatch" style="background:#EF4444"></span>
+        <span class="theme-swatch" style="background:#F97316"></span>
+        <span class="theme-swatch" style="background:#CBD5E1"></span>
+      </span>
+      <span><div class="theme-name">Crimson</div><div class="theme-desc">Red · Orange · Silver</div></span>
+    </button>
+
+    <button class="theme-btn" data-theme="royal-gold" role="option">
+      <span class="theme-swatches">
+        <span class="theme-swatch" style="background:#F59E0B"></span>
+        <span class="theme-swatch" style="background:#FBBF24"></span>
+        <span class="theme-swatch" style="background:#E2E8F0"></span>
+      </span>
+      <span><div class="theme-name">Royal Gold</div><div class="theme-desc">Amber · Gold · Platinum</div></span>
+    </button>
+
+    <button class="theme-btn" data-theme="sakura" role="option">
+      <span class="theme-swatches">
+        <span class="theme-swatch" style="background:#F472B6"></span>
+        <span class="theme-swatch" style="background:#A78BFA"></span>
+        <span class="theme-swatch" style="background:#67E8F9"></span>
+      </span>
+      <span><div class="theme-name">Sakura</div><div class="theme-desc">Pink · Lavender · Aqua</div></span>
+    </button>
+
+  </div>
+</div>
+
+<!-- Cursor -->
+<div id="cur-dot" aria-hidden="true"></div>
+<div id="cur-ring" aria-hidden="true"></div>
+
+<!-- Loader -->
+<div id="loader" role="status" aria-label="Loading">
+  <div class="ldr-mark">
+    <div class="ldr-mark-inner"></div>
+  </div>
+  <div class="ldr-name">Naveen Singh</div>
+  <div class="ldr-tag">Angular Architect · GenAI Engineer</div>
+  <div class="ldr-progress"></div>
+</div>
+
+<!-- Scroll Progress -->
+<div id="prog" role="progressbar" aria-hidden="true"></div>
+
+<!-- Navigation -->
+<header role="banner">
+<nav id="nav" aria-label="Main navigation">
+  <div class="nw">
+    <a href="#hero" class="n-logo">NS<span class="dot">·</span></a>
+    <div class="n-links" role="menubar">
+      <a href="#about" class="n-a" data-s="about">About</a>
+      <a href="#skills" class="n-a" data-s="skills">Skills</a>
+      <a href="#experience" class="n-a" data-s="experience">Experience</a>
+      <a href="#projects" class="n-a" data-s="projects">Projects</a>
+      <a href="#ai" class="n-a" data-s="ai">GenAI</a>
+      <a href="#contact" class="n-a" data-s="contact">Contact</a>
+    </div>
+    <div class="n-btns">
+      <a href="#" class="btn-outline" id="nd">↓ Resume</a>
+      <a href="#contact" class="btn-hire">Hire Me →</a>
+    </div>
+    <button class="ham" id="ham" aria-expanded="false" aria-controls="mobnav" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<nav id="mobnav" class="mob-nav" aria-label="Mobile navigation">
+  <a href="#about" class="mob-a">About</a>
+  <a href="#skills" class="mob-a">Skills</a>
+  <a href="#experience" class="mob-a">Experience</a>
+  <a href="#projects" class="mob-a">Projects</a>
+  <a href="#ai" class="mob-a">GenAI</a>
+  <a href="#contact" class="mob-a">Contact</a>
+  <a href="#" class="mob-a" id="mnd">Download Resume</a>
+</nav>
+</header>
+
+<main>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section id="hero" class="hero" aria-labelledby="hero-name">
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="h-status">
+          <span class="h-status-dot" aria-hidden="true"></span>
+          Available Remotely — Worldwide
+        </div>
+        <h1 class="hero-name" id="hero-name">
+          <span class="line1">Naveen</span>
+          <span class="line2">Singh</span>
+        </h1>
+        <p class="hero-tagline">
+          <strong>Senior Angular Architect</strong> &amp; <strong>GenAI Integration Engineer</strong> —
+          8+ years building enterprise-grade platforms processing
+          <strong>$50M+/month</strong> for banking &amp; insurance institutions.
+          Angular internals expert. Production RAG systems. Zero regressions policy.
+        </p>
+        <div class="hero-chips">
+          <div class="hchip"><span class="hchip-val">8+</span>&nbsp;Yrs Enterprise Frontend</div>
+          <div class="hchip">Angular <span class="hchip-val">v2 → v19</span></div>
+          <div class="hchip"><span class="hchip-val">40%</span>&nbsp;Perf Gain</div>
+          <div class="hchip"><span class="hchip-val">35%</span>&nbsp;Release Dep. ↓</div>
+          <div class="hchip">RAG + LLM <span class="hchip-val">In Production</span></div>
+        </div>
+        <div class="hero-btns">
+          <a href="#contact" class="btn-primary">Let's Work Together →</a>
+          <a href="#" class="btn-ghost" id="hd">↓ Download Resume</a>
+        </div>
+        <div class="hero-socials">
+          <a href="mailto:n_aveen@outlook.com" class="hsoc" aria-label="Email Naveen">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            n_aveen@outlook.com
+          </a>
+          <span class="h-vsep" aria-hidden="true"></span>
+          <a href="https://www.linkedin.com/in/naveen-singh-57051ab9/" target="_blank" rel="noopener noreferrer" class="hsoc" aria-label="LinkedIn profile">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zm2-1a2 2 0 110-4 2 2 0 010 4z"/></svg>
+            LinkedIn
+          </a>
+          <span class="h-vsep" aria-hidden="true"></span>
+          <a href="tel:+918077486316" class="hsoc">
+            <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+            +91 80774 86316
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hpanel">
+          <div class="hpanel-glow" aria-hidden="true"></div>
+          <div class="hstat-grid">
+            <div class="hstat">
+              <div class="hstat-n" data-t="9" data-s="+">9+</div>
+              <div class="hstat-l">Years Exp</div>
+            </div>
+            <div class="hstat">
+              <div class="hstat-n" data-t="50" data-s="M+">50M+</div>
+              <div class="hstat-l">Monthly Vol</div>
+            </div>
+            <div class="hstat">
+              <div class="hstat-n" data-t="40" data-s="%">40%</div>
+              <div class="hstat-l">Perf Boost</div>
+            </div>
+            <div class="hstat">
+              <div class="hstat-n" data-t="98" data-s="%">98%</div>
+              <div class="hstat-l">LLM Accuracy</div>
+            </div>
+          </div>
+          <div class="hcard-list">
+            <div class="hcard">
+              <div class="hc-label">Current Role</div>
+              <div class="hc-value">Senior Angular Developer <em>&</em> Frontend Platform Lead</div>
+              <div class="hc-sub">Primus Software · Jun 2021 — Present</div>
+            </div>
+            <div class="hcard">
+              <div class="hc-label">Specialization</div>
+              <div class="hc-value">Angular <em>v2→v19</em> · RAG / LLM Architecture</div>
+              <div class="hc-sub">Zero regressions · Production GenAI · Micro-frontends</div>
+            </div>
+            <div class="hcard">
+              <div class="hc-label">Platform Scale</div>
+              <div class="hc-value"><em>$50M+</em>/month Banking Institution</div>
+              <div class="hc-sub">12-engineer org · 3 product squads · 1000+ daily users</div>
+            </div>
+          </div>
+          <div class="h-avail-badge">
+            <div class="h-avail-badge-dot" aria-hidden="true"></div>
+            <div>
+              <div class="h-avail-text">Immediately Available</div>
+              <div class="h-avail-sub">Remote · Full-time / Consulting · Worldwide</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq-wrap" aria-hidden="true">
+  <div class="mq-inner">
+    <div class="mq-item"><span class="mq-t">Angular v2–v19</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">RAG Architecture</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">LangChain · FAISS</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">Module Federation</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">Zero Regressions Policy</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">TypeScript · RxJS</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">Micro-Frontend</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">GenAI · Production LLM</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">Web Vitals Governance</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">Nx Monorepo</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">Angular v2–v19</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">RAG Architecture</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">LangChain · FAISS</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">Module Federation</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">Zero Regressions Policy</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">TypeScript · RxJS</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">Micro-Frontend</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">GenAI · Production LLM</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">Web Vitals Governance</span><span class="mq-sep"></span></div>
+    <div class="mq-item"><span class="mq-t">Nx Monorepo</span><span class="mq-sep"></span></div>
+  </div>
+</div>
+
+<!-- METRICS -->
+<div class="metrics-row" role="list" aria-label="Key metrics">
+  <div class="metric" role="listitem">
+    <div class="card-shine" aria-hidden="true"></div>
+    <div class="metric-num" data-t="50" data-s="M+">50M+</div>
+    <div class="metric-label">Monthly Transaction Volume</div>
+    <div class="metric-sub">Banking platform under ownership</div>
+  </div>
+  <div class="metric" role="listitem">
+    <div class="card-shine" aria-hidden="true"></div>
+    <div class="metric-num" data-t="40" data-s="%">40%</div>
+    <div class="metric-label">LCP Performance Gain</div>
+    <div class="metric-sub">4s → 2.4s via Signal-based architecture</div>
+  </div>
+  <div class="metric" role="listitem">
+    <div class="card-shine" aria-hidden="true"></div>
+    <div class="metric-num" data-t="98" data-s="%">98%</div>
+    <div class="metric-label">LLM-as-Judge Accuracy</div>
+    <div class="metric-sub">Against 500+ human expert benchmarks</div>
+  </div>
+  <div class="metric" role="listitem">
+    <div class="card-shine" aria-hidden="true"></div>
+    <div class="metric-num" data-t="6" data-s="wk">6wk</div>
+    <div class="metric-label">RAG Platform Ramp Time</div>
+    <div class="metric-sub">Zero → production GenAI, regulated banking</div>
+  </div>
+</div>
+
+<hr class="hr">
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<section id="about" aria-labelledby="about-h">
+  <div class="wrap">
+    <div class="r">
+      <p class="s-eyebrow">About Naveen</p>
+      <h2 class="s-title" id="about-h">The Engineer <em>Behind</em> the Platform</h2>
+    </div>
+    <div class="about-grid r">
+      <div class="about-l">
+        <div class="a-avatar-wrap">
+          <div class="a-avatar">NS</div>
+          <div class="a-avatar-ring" aria-hidden="true"></div>
+        </div>
+        <div class="a-name">Naveen Singh</div>
+        <div class="a-role">Senior Angular Architect · GenAI Engineer</div>
+        <div class="a-loc">📍 Rishikesh, Uttarakhand, India · Remote Worldwide</div>
+        <div class="a-bio">
+          <p>I'm a <strong>Senior Angular Architect and Frontend Platform Lead</strong> with 8+ years of enterprise experience, owning the full-stack Angular strategy for a $50M+/month banking institution at Primus Software.</p>
+          <p>My edge is <strong>systematic mastery under pressure</strong> — I drove Angular v6→v19 migrations with zero regressions, designed zone-less Signal architectures improving core web vitals by 40%, and built a production RAG platform from scratch in 6 weeks in a regulated financial environment.</p>
+          <p>I don't just integrate AI — I <strong>architect compliance-ready GenAI pipelines</strong> with hallucination mitigation, source attribution, and full observability. Every system I ship is production-ready, auditable, and built to last.</p>
+        </div>
+        <div class="a-links">
+          <a href="mailto:n_aveen@outlook.com" class="a-link">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            Email
+          </a>
+          <a href="https://www.linkedin.com/in/naveen-singh-57051ab9/" target="_blank" rel="noopener noreferrer" class="a-link">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zm2-1a2 2 0 110-4 2 2 0 010 4z"/></svg>
+            LinkedIn
+          </a>
+          <a href="tel:+918077486316" class="a-link">
+            <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+            +91 80774 86316
+          </a>
+          <a href="#" class="a-link" id="ad">
+            <svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zm7-18L5.33 9h3.84v4h5.66V9h3.84L12 2z"/></svg>
+            Resume
+          </a>
+        </div>
+      </div>
+      <div class="about-r">
+        <div class="phil">
+          <div class="phil-h">Architecture Philosophy</div>
+          <p class="phil-p">I treat frontend as a product discipline — not just UI implementation. Every architectural decision is evaluated on longevity, team scalability, and observable performance impact. I formalize decisions through ADRs and architecture guilds to make institutional knowledge durable.</p>
+        </div>
+        <div class="phil">
+          <div class="phil-h">Angular Internals Depth</div>
+          <p class="phil-p">Ivy renderer internals, zone-less change detection, @defer-first loading models, Signal fine-grained reactivity, and custom schematic-driven migration tooling. I've authored internal playbooks on Signals migration and @defer adoption that are now standard across the org.</p>
+          <div class="mini-chips">
+            <span class="mc">Ivy Renderer</span>
+            <span class="mc">Zone-less</span>
+            <span class="mc">Signals</span>
+            <span class="mc">@defer</span>
+            <span class="mc">Hydration-aware SSR</span>
+          </div>
+        </div>
+        <div class="phil">
+          <div class="phil-h">GenAI Engineering Approach</div>
+          <p class="phil-p">Production AI in regulated environments requires more than a chat widget. My stack includes 5-layer hallucination mitigation, source-attribution UI, intent-aware prompt routing, and LangSmith/Arize Phoenix observability — every output auditable by compliance teams.</p>
+        </div>
+        <div class="phil">
+          <div class="phil-h">Knowledge Sharing</div>
+          <p class="phil-p">Delivered Angular platform talks at Primus — Signals migration playbook, custom schematics strategy, @defer-first loading model. Ran an 18-month structured mentorship programme growing 3 junior engineers to mid-level.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- ═══════════ SKILLS ═══════════ -->
+<section id="skills" aria-labelledby="skills-h">
+  <div class="wrap">
+    <div class="r">
+      <p class="s-eyebrow">Technical Arsenal</p>
+      <h2 class="s-title" id="skills-h">Skills &amp; <em>Expertise</em></h2>
+      <p class="s-sub">Deep platform expertise built over 9+ years on enterprise production systems — from Angular internals to LLM pipeline engineering.</p>
+    </div>
+    <div class="skills-grid r">
+      <div class="sg">
+        <div class="card-shine" aria-hidden="true"></div>
+        <div class="sg-head">
+          <div>
+            <div class="sg-ico">⚡</div>
+            <div class="sg-name">Angular Internals</div>
+          </div>
+          <span class="sg-badge core">Core</span>
+        </div>
+        <div class="sg-tags">
+          <span class="sk hi">Ivy Renderer</span><span class="sk hi">Zone-less Architecture</span><span class="sk hi">@defer Blocks</span><span class="sk hi">Signals — Fine-grained</span><span class="sk hi">Change Detection</span><span class="sk hi">Custom Schematics</span><span class="sk hi">Hierarchical DI</span><span class="sk hi">Hydration-aware SSR</span><span class="sk hi">Angular DevTools</span>
+        </div>
+      </div>
+      <div class="sg">
+        <div class="card-shine" aria-hidden="true"></div>
+        <div class="sg-head">
+          <div>
+            <div class="sg-ico">🔧</div>
+            <div class="sg-name">Angular Ecosystem</div>
+          </div>
+          <span class="sg-badge core">Core</span>
+        </div>
+        <div class="sg-tags">
+          <span class="sk hi">Angular v2–v19</span><span class="sk hi">TypeScript</span><span class="sk hi">RxJS — Custom Operators</span><span class="sk hi">NgRx Signal Store</span><span class="sk hi">Angular Material</span><span class="sk hi">Angular CDK</span><span class="sk hi">Analog.js</span><span class="sk hi">Standalone Components</span><span class="sk hi">Angular Universal</span>
+        </div>
+      </div>
+      <div class="sg">
+        <div class="card-shine" aria-hidden="true"></div>
+        <div class="sg-head">
+          <div>
+            <div class="sg-ico">🏗</div>
+            <div class="sg-name">Frontend Platform</div>
+          </div>
+          <span class="sg-badge core">Core</span>
+        </div>
+        <div class="sg-tags">
+          <span class="sk hi">Micro-Frontend Architecture</span><span class="sk hi">Module Federation</span><span class="sk hi">Nx Monorepo</span><span class="sk hi">Web Vitals — LCP/CLS/INP</span><span class="sk hi">Lighthouse CI</span><span class="sk hi">Bundle Analysis</span><span class="sk hi">Tree-shaking</span><span class="sk hi">Design Systems</span><span class="sk hi">Perf Budgets</span>
+        </div>
+      </div>
+      <div class="sg">
+        <div class="card-shine" aria-hidden="true"></div>
+        <div class="sg-head">
+          <div>
+            <div class="sg-ico">🤖</div>
+            <div class="sg-name">Generative AI &amp; LLM</div>
+          </div>
+          <span class="sg-badge em">Emerging Lead</span>
+        </div>
+        <div class="sg-tags">
+          <span class="sk hi">RAG Architecture</span><span class="sk hi">LangChain</span><span class="sk hi">FAISS — IVF-PQ</span><span class="sk hi">Prompt Engineering</span><span class="sk hi">Hallucination Mitigation</span><span class="sk hi">LLM-as-Judge</span><span class="sk hi">SSE Token Streaming</span><span class="sk hi">LangSmith</span><span class="sk hi">Token Budget Optimisation</span><span class="sk hi">Semantic Reranking</span><span class="sk hi">CoT Reasoning</span><span class="sk hi">Drift Detection</span><span class="sk hi">Azure Document Intelligence</span><span class="sk">Gemini API</span><span class="sk">Claude API</span><span class="sk">HITL Pipelines</span><span class="sk">Pinecone</span><span class="sk">Arize Phoenix</span>
+        </div>
+      </div>
+      <div class="sg">
+        <div class="card-shine" aria-hidden="true"></div>
+        <div class="sg-head">
+          <div>
+            <div class="sg-ico">🛡</div>
+            <div class="sg-name">Governance &amp; DevOps</div>
+          </div>
+          <span class="sg-badge prac">Practitioner</span>
+        </div>
+        <div class="sg-tags">
+          <span class="sk">ADR Formalization</span><span class="sk">Architecture Guild</span><span class="sk">SonarQube</span><span class="sk">Lighthouse CI</span><span class="sk">Docker</span><span class="sk">CI/CD Pipelines</span><span class="sk">Auth0 / JWT / RBAC</span><span class="sk">Jasmine / Karma</span><span class="sk">GitHub Actions</span><span class="sk">AWS</span><span class="sk">Agile / Scrum</span>
+        </div>
+      </div>
+      <div class="sg">
+        <div class="card-shine" aria-hidden="true"></div>
+        <div class="sg-head">
+          <div>
+            <div class="sg-ico">📱</div>
+            <div class="sg-name">Emerging &amp; Cross-Platform</div>
+          </div>
+          <span class="sg-badge prac">Active R&amp;D</span>
+        </div>
+        <div class="sg-tags">
+          <span class="sk">React / React Native 0.82</span><span class="sk">Offline-First Architecture</span><span class="sk">WatermelonDB / SQLite</span><span class="sk">LibSodium E2E Encryption</span><span class="sk">Node.js</span><span class="sk">FastAPI — Python</span><span class="sk">Tailwind CSS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- ═══════════ EXPERIENCE ═══════════ -->
+<section id="experience" aria-labelledby="exp-h">
+  <div class="wrap">
+    <div class="r">
+      <p class="s-eyebrow">Career Timeline</p>
+      <h2 class="s-title" id="exp-h">Work <em>Experience</em></h2>
+      <p class="s-sub">A track record of progressive ownership — from developer to platform architect to GenAI engineer at enterprise scale.</p>
+    </div>
+    <div class="tl r">
+      <div class="tl-item">
+        <div class="tl-dot" aria-hidden="true"></div>
+        <div class="tl-meta">
+          <span class="tl-period">Nov 2019 — Present · 6+ yrs</span>
+          <span class="tl-co">Primus Software</span>
+        </div>
+        <h3 class="tl-role">Senior Angular Developer &amp; Frontend Platform Lead</h3>
+        <div class="tl-stack">Angular 6-19 · TypeScript · RxJS · Signals · Standalone Components · @defer · Module Federation · Nx · SSR · REST APIs · Docker · CI/CD · SonarQube · Lighthouse CI · LangChain · FAISS · FastAPI</div>
+        <div class="tl-highlight">⚡ Platform Architect — $50M+/month banking platform · 12-engineer org</div>
+        <div class="tl-bls">
+          <div class="tl-bl"><span class="tl-bl-dot">▸</span><span>Sole architect of enterprise-wide Angular upgrade programme: <strong>v6 → v19 with zero regressions</strong>. Built custom schematics, automated safe patterns with ng-morpheus. Reduced bundle size 30% via @defer-first architecture.</span></div>
+          <div class="tl-bl"><span class="tl-bl-dot">▸</span><span>Designed and shipped <strong>zone-less, Signal-based architecture</strong> improving LCP from 4s to 2.4s (40%), making the platform the fastest-loading product in the client portfolio. Enforced via Lighthouse CI performance budgets.</span></div>
+          <div class="tl-bl"><span class="tl-bl-dot">▸</span><span>Architected <strong>Webpack Module Federation micro-frontend platform</strong> — 5 independently deployable domains, 35% reduction in cross-team release dependencies.</span></div>
+          <div class="tl-bl"><span class="tl-bl-dot">▸</span><span>Built <strong>production RAG platform</strong> from zero GenAI knowledge in 6 weeks: LangChain + FAISS IVF-PQ, sub-500ms p95 retrieval on 50k documents, 5-layer hallucination mitigation, full observability stack.</span></div>
+          <div class="tl-bl"><span class="tl-bl-dot">▸</span><span>Established architecture guild, formalized ADRs. 95% sprint adherence over 18 months as C-suite technical liaison. Grew 3 junior developers to mid-level through structured mentorship.</span></div>
+        </div>
+      </div>
+      <div class="tl-item r d1">
+        <div class="tl-dot" aria-hidden="true"></div>
+        <div class="tl-meta">
+          <span class="tl-period">Jan 2017 — Oct 2019 · 2 yr 10 mo</span>
+          <span class="tl-co">Cartel First</span>
+        </div>
+        <h3 class="tl-role">Angular Developer</h3>
+        <div class="tl-stack">Angular v2–v9 · TypeScript · RxJS · NgRx · REST APIs · SCSS</div>
+        <div class="tl-bls">
+          <div class="tl-bl"><span class="tl-bl-dot">▸</span><span>Developed enterprise Angular applications for BFSI clients. Implemented complex reactive data flows with RxJS and NgRx state management.</span></div>
+          <div class="tl-bl"><span class="tl-bl-dot">▸</span><span>Led front-end integration of RESTful APIs and WebSocket-driven real-time dashboards for trading and banking platforms.</span></div>
+          <div class="tl-bl"><span class="tl-bl-dot">▸</span><span>Drove code quality initiatives: established team lint standards, review checklists, and onboarding documentation reducing new-hire ramp time by ~30%.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- ═══════════ PROJECTS ═══════════ -->
+<section id="projects" aria-labelledby="proj-h">
+  <div class="wrap">
+    <div class="r">
+      <p class="s-eyebrow">Build Portfolio</p>
+      <h2 class="s-title" id="proj-h">Featured <em>Projects</em></h2>
+      <p class="s-sub">Production systems across banking, insurance, and AI — each solving a real architectural challenge at scale.</p>
+    </div>
+    <div class="proj-filters r">
+      <button class="pf-btn on" data-f="all">All</button>
+      <button class="pf-btn" data-f="enterprise">Enterprise</button>
+      <button class="pf-btn" data-f="genai">GenAI / AI</button>
+      <button class="pf-btn" data-f="platform">Platform</button>
+      <button class="pf-btn" data-f="independent">Independent</button>
+    </div>
+    <div class="feat-grid r" id="fr">
+      <article class="pf-card" data-fc="enterprise platform genai">
+        <div class="card-shine" aria-hidden="true"></div>
+        <div class="feat-badge">★ Featured — Flagship</div>
+        <div class="pfc-period">Nov 2019 — Present · Primus Software</div>
+        <h3 class="pfc-name">DigiGO — Banking Platform</h3>
+        <div class="pfc-sub">Enterprise Banking Core · Angular Architecture Owner</div>
+        <p class="pfc-desc">Central Angular platform powering a $50M+/month banking institution. Owned the full lifecycle: Angular v6→v19 migration with zero regressions, zone-less/Signal architecture, Webpack Module Federation micro-frontends, and Lighthouse CI performance governance. 12-engineer org, 3 product squads, 1,000+ daily users.</p>
+        <div class="metric-bar">▸ 40% load-time reduction · 35% fewer release deps · 30% bundle size ↓ · 95% sprint adherence</div>
+        <div class="tech-row">
+          <span class="tt">Angular v19</span>
+          <span class="tt">TypeScript</span>
+          <span class="tt">RxJS</span>
+          <span class="tt">Signals</span>
+          <span class="tt">Zone-less</span>
+          <span class="tt tt-c">Module Federation</span>
+          <span class="tt tt-c">Nx</span>
+          <span class="tt tt-g">SSR</span>
+          <span class="tt tt-g">Lighthouse CI</span>
+          <span class="tt tt-e">LangChain</span>
+          <span class="tt tt-e">FAISS</span>
+        </div>
+      </article>
+      <article class="pf-card" data-fc="enterprise platform genai">
+        <div class="card-shine" aria-hidden="true"></div>
+        <div class="feat-badge">★ Featured — AI</div>
+        <div class="pfc-period">Aug 2025 – Dec 2025 · Primus Software</div>
+        <h3 class="pfc-name">Intelligent Document Processing Platform (IDP)</h3>
+        <div class="pfc-sub">Enterprise AI · Banking Domain</div>
+        <p class="pfc-desc">Enterprise AI platform replacing manual financial document workflows with LLM-powered extraction, RAG-based retrieval, and compliance-grade Human-in-the-Loop review — deployed for banking KYC, onboarding, and operational document types.</p>
+        <div class="metric-bar">▸ Token budget ↓ 30% · Hallucination rate ↓ · Sub-500ms p95 retrieval · 98%+ LLM-as-Judge alignment</div>
+        <div class="tech-row">
+          <span class="tt">React</span>
+          <span class="tt">TypeScript</span>
+          <span class="tt tt-c">Azure Document Intelligence</span>
+          <span class="tt tt-c">LangChain</span>
+          <span class="tt tt-g">FAISS (IVF-PQ)</span>
+          <span class="tt tt-g">Google Gemini API</span>
+          <span class="tt tt-e">Claude API</span>
+          <span class="tt tt-e">Mistral 7B</span>
+          <span class="tt">Auth0</span>
+          <span class="tt">JWT</span>
+        </div>
+      </article>
+    </div>
+    <div class="reg-grid">
+      <article class="pc r" data-rc="independent genai platform">
+        <div class="pc-top-line" aria-hidden="true"></div>
+        <div class="card-shine" aria-hidden="true"></div>
+        <div class="pbadge proto">Independent</div>
+        <div class="pc-period">Feb 2026 – Present</div>
+        <h3 class="pc-name">Mycroft - AI Dev Assistant</h3>
+        <div class="pc-tag">AI-Powered Development Assistant Platform</div>
+        <p class="pc-body">Independently architecting Mycroft - an intelligent AI-powered development assistant platform revolutionizing code quality, engineering productivity, and developer experience across enterprise teams. Context-aware suggestions, intelligent code review, smart debugging, architectural guidance.</p>
+        <div class="pc-metric">▸ 15 beta testers · 35% review time ↓ · 92% bug ID accuracy · Sub-2s responses</div>
+        <div class="tech-row">
+          <span class="tt">Node.js</span>
+          <span class="tt tt-c">LangChain</span>
+          <span class="tt tt-c">GPT-4</span>
+          <span class="tt tt-g">Custom RAG</span>
+          <span class="tt tt-g">Pinecone</span>
+          <span class="tt tt-e">React</span>
+          <span class="tt tt-e">TypeScript</span>
+          <span class="tt">Docker</span>
+          <span class="tt">AWS</span>
+        </div>
+      </article>
+      <article class="pc r d1" data-rc="independent mobile">
+        <div class="pc-top-line" aria-hidden="true"></div>
+        <div class="card-shine" aria-hidden="true"></div>
+        <div class="pbadge proto">Independent</div>
+        <div class="pc-period">Dec 2025 – Present</div>
+        <h3 class="pc-name">CrisisMesh – Offline Mesh App</h3>
+        <div class="pc-tag">Offline Mesh Communication App</div>
+        <p class="pc-body">Personal R&D project — offline-first, delay-tolerant mesh messaging app for communication when internet and cellular networks are unavailable. Implements store-and-forward mesh model, integrates Apple Multipeer, Wi-Fi Direct, Bluetooth discovery.</p>
+        <div class="pc-metric">▸ Store-and-forward mesh · Encrypted · Multi-platform offline</div>
+        <div class="tech-row">
+          <span class="tt">React Native 0.82</span>
+          <span class="tt">TypeScript</span>
+          <span class="tt tt-c">WatermelonDB</span>
+          <span class="tt tt-c">SQLite</span>
+          <span class="tt tt-g">LibSodium</span>
+          <span class="tt tt-g">LibQuiet</span>
+        </div>
+      </article>
+      <article class="pc r" data-rc="independent platform">
+        <div class="pc-top-line" aria-hidden="true"></div>
+        <div class="card-shine" aria-hidden="true"></div>
+        <div class="pbadge proto">Independent</div>
+        <div class="pc-period">Mar 2025 – Apr 2025</div>
+        <h3 class="pc-name">AI-Enabled Enterprise Dashboard</h3>
+        <div class="pc-tag">Angular 20+ · AI-powered Insights</div>
+        <p class="pc-body">Angular 20+ enterprise analytics platform with AI-powered data exploration — enabling operations teams to query, visualize, and analyze complex datasets through natural language and intelligent chart recommendations. Integrated AI-powered chart recommendation engine, built natural language query interface.</p>
+        <div class="pc-metric">▸ NL → dynamic filters · Auto chart type recommendations · Dynamic charting engine</div>
+        <div class="tech-row">
+          <span class="tt">Angular 20+</span>
+          <span class="tt">TypeScript</span>
+          <span class="tt tt-c">Angular Material</span>
+          <span class="tt tt-c">Chart.js</span>
+          <span class="tt tt-g">Tailwind CSS</span>
+          <span class="tt tt-g">SCSS</span>
+        </div>
+      </article>
+      <article class="pc r d1" data-rc="independent platform">
+        <div class="pc-top-line" aria-hidden="true"></div>
+        <div class="card-shine" aria-hidden="true"></div>
+        <div class="pbadge proto">Independent</div>
+        <div class="pc-period">Mar 2024 – May 2024</div>
+        <h3 class="pc-name">UI Builder</h3>
+        <div class="pc-tag">Low-Code Form &amp; UI Builder</div>
+        <p class="pc-body">Low-code Form and UI Builder enabling non-developers to assemble production-ready Angular interfaces without writing code — powered by a JSON-driven dynamic form engine and drag-and-drop canvas. Built Smart Form Builder, Canvas-IQ visual builder, live Tailwind styling editor.</p>
+        <div class="pc-metric">▸ Zero-code · Two-way binding · Responsive previews · No-code backend integration</div>
+        <div class="tech-row">
+          <span class="tt">Angular 20+</span>
+          <span class="tt">TypeScript</span>
+          <span class="tt tt-c">Angular Material</span>
+          <span class="tt tt-c">Angular CDK</span>
+          <span class="tt tt-g">Tailwind CSS</span>
+          <span class="tt tt-g">SCSS</span>
+          <span class="tt tt-e">Sortable.js</span>
+        </div>
+      </article>
+      <article class="pc r d2" data-rc="enterprise">
+        <div class="pc-top-line" aria-hidden="true"></div>
+        <div class="card-shine" aria-hidden="true"></div>
+        <div class="pbadge prod">Production</div>
+        <div class="pc-period">Feb 2022 – May 2025 · Primus</div>
+        <h3 class="pc-name">Consolidated Billing</h3>
+        <div class="pc-tag">Enterprise Billing Management</div>
+        <p class="pc-body">Enterprise billing management platform centralizing invoicing, adjuster management, and claim-related billing for finance and operations teams. Designed automated invoice generation, built role-based views, and developed advanced reusable UI components. Maintained performance, WCAG accessibility, and code maintainability across a 3-year lifecycle.</p>
+        <div class="pc-metric">▸ Automated invoice generation · WCAG compliant · 3-yr lifecycle · Minimized human error</div>
+        <div class="tech-row">
+          <span class="tt">Angular (v2+ to latest)</span>
+          <span class="tt tt-c">Angular Universal</span>
+          <span class="tt tt-g">TypeScript</span>
+          <span class="tt tt-e">RxJS</span>
+          <span class="tt tt-e">Angular Material</span>
+        </div>
+      </article>
+      <article class="pc r d1" data-rc="enterprise">
+        <div class="pc-top-line" aria-hidden="true"></div>
+        <div class="card-shine" aria-hidden="true"></div>
+        <div class="pbadge prod">Production</div>
+        <div class="pc-period">Nov 2021 — Feb 2022 · Primus</div>
+        <h3 class="pc-name">Afordit Bank</h3>
+        <div class="pc-tag">Performance &amp; Quality — Banking</div>
+        <p class="pc-body">Lazy loading for feature modules, pure pipes and optimized change detection for high-traffic banking views. Comprehensive unit tests increasing coverage and catching regressions earlier in dev cycles.</p>
+        <div class="pc-metric">▸ Bundle ↓ · TTI improved · Test coverage ↑</div>
+        <div class="tech-row">
+          <span class="tt">Angular</span>
+          <span class="tt tt-c">TypeScript</span>
+          <span class="tt tt-g">Jasmine</span>
+          <span class="tt tt-e">Karma</span>
+        </div>
+      </article>
+      <article class="pc r d2" data-rc="enterprise platform">
+        <div class="pc-top-line" aria-hidden="true"></div>
+        <div class="card-shine" aria-hidden="true"></div>
+        <div class="pbadge prod">Production</div>
+        <div class="pc-period">Jun 2021 — Aug 2022 · Primus</div>
+        <h3 class="pc-name">Insurance Platform Core</h3>
+        <div class="pc-tag">Enterprise Insurance System</div>
+        <p class="pc-body">Multi-tenant insurance administration platform with dynamic policy management, claims processing, and real-time reporting. WCAG 2.1 AA compliant with accessibility-first component library.</p>
+        <div class="pc-metric">▸ Multi-tenant · WCAG 2.1 AA · Shared component library</div>
+        <div class="tech-row">
+          <span class="tt">Angular</span>
+          <span class="tt tt-g">RxJS</span>
+          <span class="tt tt-c">Angular CDK</span>
+          <span class="tt tt-e">NgRx</span>
+        </div>
+      </article>
+      <article class="pc r" data-rc="enterprise">
+        <div class="pc-top-line" aria-hidden="true"></div>
+        <div class="card-shine" aria-hidden="true"></div>
+        <div class="pbadge prod">Production</div>
+        <div class="pc-period">May 2022 – May 2025 · Primus</div>
+        <h3 class="pc-name">UMS Application</h3>
+        <div class="pc-tag">Centralized RBAC User Management</div>
+        <p class="pc-body">Unified RBAC platform replacing fragmented per-app user setup with a unified RBAC platform managing users, roles, and permissions across multiple enterprise applications. Implemented Role-Based Access Control (RBAC), designed intuitive admin screens, and collaborated with teams for zero-disruption integration.</p>
+        <div class="pc-metric">▸ RBAC aligned to job functions · Zero-disruption migration · Faster onboarding/offboarding</div>
+        <div class="tech-row">
+          <span class="tt">Angular Material</span>
+          <span class="tt">TypeScript</span>
+          <span class="tt tt-g">RxJS</span>
+          <span class="tt tt-c">Auth0</span>
+          <span class="tt">JWT</span>
+        </div>
+      </article>
+      <article class="pc r d1" data-rc="enterprise">
+        <div class="pc-top-line" aria-hidden="true"></div>
+        <div class="card-shine" aria-hidden="true"></div>
+        <div class="pbadge prod">Production</div>
+        <div class="pc-period">Nov 2021 — Feb 2022 · Primus</div>
+        <h3 class="pc-name">Afordit Bank</h3>
+        <div class="pc-tag">Performance &amp; Quality — Banking</div>
+        <p class="pc-body">Lazy loading for feature modules, pure pipes and optimized change detection for high-traffic banking views. Comprehensive unit tests increasing coverage and catching regressions earlier in dev cycles.</p>
+        <div class="pc-metric">▸ Bundle ↓ · TTI improved · Test coverage ↑</div>
+        <div class="tech-row">
+          <span class="tt">Angular</span>
+          <span class="tt tt-c">TypeScript</span>
+          <span class="tt tt-g">Jasmine</span>
+          <span class="tt tt-e">Karma</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- ═══════════ GENAI ═══════════ -->
+<section id="ai" aria-labelledby="ai-h">
+  <div class="wrap">
+    <div class="r">
+      <p class="s-eyebrow">Generative AI Engineering</p>
+      <h2 class="s-title" id="ai-h">AI Engineering <em>Depth</em></h2>
+      <p class="s-sub">Production GenAI in regulated financial environments — architecture, reliability, compliance, and observability. Not just integration.</p>
+    </div>
+    <div class="ai-wrap r">
+      <div class="ai-l">
+        <div class="ai-body">
+          <p>Most frontend engineers add a chat widget. I <strong>architect the entire AI stack</strong> — from embedding pipelines and vector index tuning to hallucination mitigation and production observability in environments where every output may be reviewed by compliance teams and regulators.</p>
+          <p>This includes a <strong>5-layer compliance architecture</strong> ensuring every AI output in banking workflows is audit-ready and legally defensible, with source-attribution UI mapping each claim to its exact source passage.</p>
+          <p>Deployed RAG systems processing <strong>10k–50k documents</strong> at sub-500ms p95 retrieval. Built intent-aware prompt routing achieving <strong>98%+ alignment</strong> against 500+ human expert benchmark datasets. Engineered streaming delivery achieving <strong>sub-200ms TTFT</strong>.</p>
+        </div>
+        <div class="ai-callout">
+          <div class="ai-callout-h">⚡ Ramp Velocity — Core Differentiator</div>
+          <p>From <strong>zero GenAI knowledge</strong> to a full demo-ready RAG platform in <strong>6 weeks</strong>. Same systematic methodology applied across Angular v6→v19 and production-ready React in <strong>48 hours</strong> during a critical cross-team release.</p>
+        </div>
+      </div>
+      <div class="ai-r">
+        <div class="ai-pillar">
+          <div class="card-shine" aria-hidden="true"></div>
+          <div class="aip-num">01</div>
+          <div class="aip-title">RAG Architecture &amp; Retrieval</div>
+          <p class="aip-text">Adaptive retrieval with dynamic K (3–12), MMR diversity, IVF-PQ indexing (p95: 3–4s → sub-500ms, &lt;2% recall degradation), semantic threshold filtering, and heterogeneous ingestion with pre-embedding normalization reducing false-positive retrieval by 40%.</p>
+        </div>
+        <div class="ai-pillar">
+          <div class="card-shine" aria-hidden="true"></div>
+          <div class="aip-num">02</div>
+          <div class="aip-title">Hallucination Mitigation Pipeline</div>
+          <p class="aip-text">5-layer architecture: source-constrained retrieval → confidence scoring → semantic reranking → citation-attribution UI (every claim mapped to exact source passage) → HITL escalation. Near-zero unverified outputs reaching compliance teams.</p>
+        </div>
+        <div class="ai-pillar">
+          <div class="card-shine" aria-hidden="true"></div>
+          <div class="aip-num">03</div>
+          <div class="aip-title">Prompt Engineering &amp; Pipelines</div>
+          <p class="aip-text">Intent-aware routing with query classification, few-shot injection per intent class, CoT reasoning for multi-step queries, token budget management (sliding window chunking, pre-counting), and stateful multi-turn context with turn-based eviction across 20+ turns.</p>
+        </div>
+        <div class="ai-pillar">
+          <div class="card-shine" aria-hidden="true"></div>
+          <div class="aip-num">04</div>
+          <div class="aip-title">Observability &amp; Quality</div>
+          <p class="aip-text">LangSmith + Arize Phoenix tracking token usage, retrieval latency, and response quality. GPT-4o LLM-as-Judge scoring loops — 98%+ alignment against 500+ human expert benchmarks. Drift detection driving 15% query success improvement over 3 months.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section id="contact" aria-labelledby="contact-h">
+  <div class="wrap">
+    <div class="r">
+      <p class="s-eyebrow">Get in Touch</p>
+      <h2 class="s-title" id="contact-h">Let's Build <em>Together</em></h2>
+    </div>
+    <div class="contact-wrap r">
+      <div class="cl">
+        <div>
+          <div class="cl-eyebrow">Open to Opportunities</div>
+          <h3 class="cl-h">Ready to scale your <em>frontend</em> platform?</h3>
+          <p class="cl-body">Available for senior Angular architecture engagements, platform strategy consulting, GenAI integration projects, and full-time remote roles. Deep fintech domain expertise. Global timezone flexibility.</p>
+          <div class="cl-chips">
+            <span class="cl-chip">Remote-First</span>
+            <span class="cl-chip">Full-Time</span>
+            <span class="cl-chip">Consulting</span>
+            <span class="cl-chip">Contract</span>
+            <span class="cl-chip">Fintech</span>
+            <span class="cl-chip">Enterprise</span>
+          </div>
+        </div>
+        <a href="#" class="dl-btn" id="cd">
+          <svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zm7-18L5.33 9h3.84v4h5.66V9h3.84L12 2z"/></svg>
+          Download My Resume
+        </a>
+      </div>
+      <div class="cr">
+        <div class="ci">
+          <div class="ci-ico">📧</div>
+          <div>
+            <div class="ci-lbl">Email</div>
+            <div class="ci-val"><a href="mailto:n_aveen@outlook.com">n_aveen@outlook.com</a></div>
+            <button class="copy-b" data-v="n_aveen@outlook.com" aria-label="Copy email">
+              <svg style="width:10px;height:10px;fill:currentColor" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+              Copy
+            </button>
+          </div>
+        </div>
+        <div class="ci">
+          <div class="ci-ico">📱</div>
+          <div>
+            <div class="ci-lbl">Phone / WhatsApp</div>
+            <div class="ci-val"><a href="tel:+918077486316">+91 80774 86316</a></div>
+            <button class="copy-b" data-v="+918077486316" aria-label="Copy phone">
+              <svg style="width:10px;height:10px;fill:currentColor" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+              Copy
+            </button>
+          </div>
+        </div>
+        <div class="ci">
+          <div class="ci-ico">💼</div>
+          <div>
+            <div class="ci-lbl">LinkedIn</div>
+            <div class="ci-val"><a href="https://www.linkedin.com/in/naveen-singh-57051ab9/" target="_blank" rel="noopener noreferrer">linkedin.com/in/naveen-singh-57051ab9</a></div>
+          </div>
+        </div>
+        <div class="ci">
+          <div class="ci-ico">📍</div>
+          <div>
+            <div class="ci-lbl">Location &amp; Availability</div>
+            <div class="ci-val">Rishikesh, India · <span style="color:var(--em);font-weight:700">Immediately Available</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer role="contentinfo">
+  <div class="footer-inner">
+    <div>
+      <div class="f-brand">Naveen Singh</div>
+      <div class="f-sub">Senior Angular Architect · GenAI Specialist · © 2026 Naveen Singh · Rishikesh, India</div>
+    </div>
+    <nav class="f-nav" aria-label="Footer navigation">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#ai">GenAI</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="f-soc">
+      <a href="mailto:n_aveen@outlook.com" class="fsoc">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        Email
+      </a>
+      <a href="https://www.linkedin.com/in/naveen-singh-57051ab9/" target="_blank" rel="noopener noreferrer" class="fsoc">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zm2-1a2 2 0 110-4 2 2 0 010 4z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</footer>
+
+<button id="btt" aria-label="Scroll to top">↑</button>
+
+<!-- Resume Viewer -->
+<div id="resume-viewer" role="dialog" aria-modal="true" aria-label="Resume viewer">
+  <div id="resume-header">
+    <a href="Naveen_Singh_Resume.pdf" target="_blank" class="resume-action-btn">Open in New Tab</a>
+    <a href="Naveen_Singh_Resume.pdf" download="Naveen_Singh_Resume.pdf" class="resume-action-btn">Download</a>
+    <button id="close-resume-viewer" class="resume-action-btn">✕ Close</button>
+  </div>
+  <iframe id="resume-iframe" src="Naveen_Singh_Resume.pdf" title="Naveen Singh Resume"></iframe>
+</div>
+
+<!-- THREE.JS CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>
