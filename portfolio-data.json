@@ -55,38 +55,38 @@
       }
     ]
   },
-  "skills": [
-    {
-      "name": "Angular Internals",
-      "badge": "Core",
-      "tags": ["Ivy Renderer", "Zone-less Architecture", "@defer Blocks", "Signals — Fine-grained", "Change Detection", "Custom Schematics", "Hierarchical DI", "Hydration-aware SSR", "Angular DevTools"]
-    },
-    {
-      "name": "Angular Ecosystem",
-      "badge": "Core",
-      "tags": ["Angular v2–v19", "TypeScript", "RxJS — Custom Operators", "NgRx Signal Store", "Angular Material", "Angular CDK", "Analog.js", "Standalone Components", "Angular Universal"]
-    },
-    {
-      "name": "Frontend Platform",
-      "badge": "Core",
-      "tags": ["Micro-Frontend Architecture", "Module Federation", "Nx Monorepo", "Web Vitals — LCP/CLS/INP", "Lighthouse CI", "Bundle Analysis", "Tree-shaking", "Design Systems", "Perf Budgets"]
-    },
-    {
-      "name": "Generative AI & LLM",
-      "badge": "Emerging Lead",
-      "tags": ["RAG Architecture", "LangChain", "FAISS — IVF-PQ", "Prompt Engineering", "Hallucination Mitigation", "LLM-as-Judge", "SSE Token Streaming", "LangSmith", "Token Budget Optimisation", "Semantic Reranking", "CoT Reasoning", "Drift Detection", "Azure Document Intelligence", "Gemini API", "Claude API", "HITL Pipelines", "Pinecone", "Arize Phoenix"]
-    },
-    {
-      "name": "Governance & DevOps",
-      "badge": "Practitioner",
-      "tags": ["ADR Formalization", "Architecture Guild", "SonarQube", "Lighthouse CI", "Docker", "CI/CD Pipelines", "Auth0 / JWT / RBAC", "Jasmine / Karma", "GitHub Actions", "AWS", "Agile / Scrum"]
-    },
-    {
-      "name": "Emerging & Cross-Platform",
-      "badge": "Active R&D",
-      "tags": ["React / React Native 0.82", "Offline-First Architecture", "WatermelonDB / SQLite", "LibSodium E2E Encryption", "Node.js", "FastAPI — Python", "Tailwind CSS"]
-    }
-  ],
+  "skills": {
+    "Core": [
+      {
+        "name": "Angular Internals",
+        "tags": ["Ivy Renderer", "Zone-less Architecture", "@defer Blocks", "Signals — Fine-grained", "Change Detection", "Custom Schematics", "Hierarchical DI", "Hydration-aware SSR", "Angular DevTools"]
+      },
+      {
+        "name": "Angular Ecosystem",
+        "tags": ["Angular v2–v19", "TypeScript", "RxJS — Custom Operators", "NgRx Signal Store", "Angular Material", "Angular CDK", "Analog.js", "Standalone Components", "Angular Universal"]
+      },
+      {
+        "name": "Frontend Platform",
+        "tags": ["Micro-Frontend Architecture", "Module Federation", "Nx Monorepo", "Web Vitals — LCP/CLS/INP", "Lighthouse CI", "Bundle Analysis", "Tree-shaking", "Design Systems", "Perf Budgets"]
+      }
+    ],
+    "Emerging Lead": [
+      {
+        "name": "Generative AI & LLM",
+        "tags": ["RAG Architecture", "LangChain", "FAISS — IVF-PQ", "Prompt Engineering", "Hallucination Mitigation", "LLM-as-Judge", "SSE Token Streaming", "LangSmith", "Token Budget Optimisation", "Semantic Reranking", "CoT Reasoning", "Drift Detection", "Azure Document Intelligence", "Gemini API", "Claude API", "HITL Pipelines", "Pinecone", "Arize Phoenix"]
+      }
+    ],
+    "Practitioner": [
+      {
+        "name": "Governance & DevOps",
+        "tags": ["ADR Formalization", "Architecture Guild", "SonarQube", "Lighthouse CI", "Docker", "CI/CD Pipelines", "Auth0 / JWT / RBAC", "Jasmine / Karma", "GitHub Actions", "AWS", "Agile / Scrum"]
+      },
+      {
+        "name": "Emerging & Cross-Platform",
+        "tags": ["React / React Native 0.82", "Offline-First Architecture", "WatermelonDB / SQLite", "LibSodium E2E Encryption", "Node.js", "FastAPI — Python", "Tailwind CSS"]
+      }
+    ]
+  },
   "experience": [
     {
       "period": "Nov 2019 — Present · 6+ yrs",
